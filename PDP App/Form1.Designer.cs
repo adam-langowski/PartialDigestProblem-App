@@ -28,8 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
+            dataGridView3 = new DataGridView();
+            dataGridView2 = new DataGridView();
+            label12 = new Label();
+            label11 = new Label();
             dataGridView1 = new DataGridView();
             domainUpDown6 = new DomainUpDown();
             domainUpDown5 = new DomainUpDown();
@@ -51,29 +56,26 @@
             button2 = new Button();
             button1 = new Button();
             tabPage2 = new TabPage();
-            tabPage3 = new TabPage();
-            label11 = new Label();
-            label12 = new Label();
-            dataGridView2 = new DataGridView();
-            dataGridView3 = new DataGridView();
-            label13 = new Label();
-            label14 = new Label();
-            label15 = new Label();
-            label16 = new Label();
-            button4 = new Button();
-            button5 = new Button();
-            label17 = new Label();
-            label18 = new Label();
+            label21 = new Label();
             progressBar1 = new ProgressBar();
-            label19 = new Label();
+            label18 = new Label();
+            label17 = new Label();
+            button5 = new Button();
+            button4 = new Button();
+            label16 = new Label();
+            label15 = new Label();
+            label14 = new Label();
+            label13 = new Label();
+            tabPage3 = new TabPage();
             label20 = new Label();
+            label19 = new Label();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             tabPage2.SuspendLayout();
             tabPage3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView3).BeginInit();
             SuspendLayout();
             // 
             // tabControl1
@@ -115,11 +117,47 @@
             tabPage1.Controls.Add(button1);
             tabPage1.Location = new Point(4, 24);
             tabPage1.Name = "tabPage1";
-            tabPage1.Padding = new Padding(3, 3, 3, 3);
+            tabPage1.Padding = new Padding(3);
             tabPage1.Size = new Size(792, 424);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Instancja wejściowa";
             tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView3
+            // 
+            dataGridView3.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView3.Location = new Point(437, 235);
+            dataGridView3.Name = "dataGridView3";
+            dataGridView3.Size = new Size(325, 130);
+            dataGridView3.TabIndex = 23;
+            // 
+            // dataGridView2
+            // 
+            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView2.Location = new Point(437, 126);
+            dataGridView2.Name = "dataGridView2";
+            dataGridView2.Size = new Size(325, 65);
+            dataGridView2.TabIndex = 22;
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label12.Location = new Point(480, 212);
+            label12.Name = "label12";
+            label12.Size = new Size(256, 20);
+            label12.TabIndex = 21;
+            label12.Text = "Multizbiór wejściowy D (edytowalny):";
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label11.Location = new Point(542, 103);
+            label11.Name = "label11";
+            label11.Size = new Size(107, 20);
+            label11.TabIndex = 20;
+            label11.Text = "Rozwiązanie P:";
             // 
             // dataGridView1
             // 
@@ -321,6 +359,7 @@
             // 
             // tabPage2
             // 
+            tabPage2.Controls.Add(label21);
             tabPage2.Controls.Add(progressBar1);
             tabPage2.Controls.Add(label18);
             tabPage2.Controls.Add(label17);
@@ -332,11 +371,106 @@
             tabPage2.Controls.Add(label13);
             tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(3, 3, 3, 3);
+            tabPage2.Padding = new Padding(3);
             tabPage2.Size = new Size(792, 424);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Tabu Search";
             tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // label21
+            // 
+            label21.AutoSize = true;
+            label21.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label21.Location = new Point(28, 103);
+            label21.Name = "label21";
+            label21.Size = new Size(208, 20);
+            label21.TabIndex = 9;
+            label21.Text = "- analizowane sąsiedztwo (%):";
+            // 
+            // progressBar1
+            // 
+            progressBar1.Location = new Point(401, 332);
+            progressBar1.Name = "progressBar1";
+            progressBar1.Size = new Size(342, 23);
+            progressBar1.TabIndex = 8;
+            // 
+            // label18
+            // 
+            label18.AutoSize = true;
+            label18.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label18.Location = new Point(401, 309);
+            label18.Name = "label18";
+            label18.Size = new Size(62, 20);
+            label18.TabIndex = 7;
+            label18.Text = "Progres:";
+            // 
+            // label17
+            // 
+            label17.AutoSize = true;
+            label17.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label17.Location = new Point(401, 43);
+            label17.Name = "label17";
+            label17.Size = new Size(203, 20);
+            label17.TabIndex = 6;
+            label17.Text = "Aktualna wartość funkcji celu:";
+            // 
+            // button5
+            // 
+            button5.Location = new Point(58, 296);
+            button5.Name = "button5";
+            button5.Size = new Size(93, 33);
+            button5.TabIndex = 5;
+            button5.Text = "Stop";
+            button5.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            button4.Location = new Point(58, 245);
+            button4.Name = "button4";
+            button4.Size = new Size(93, 33);
+            button4.TabIndex = 4;
+            button4.Text = "Start";
+            button4.UseVisualStyleBackColor = true;
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label16.Location = new Point(28, 162);
+            label16.Name = "label16";
+            label16.Size = new Size(81, 20);
+            label16.TabIndex = 3;
+            label16.Text = "- kadencja:";
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label15.Location = new Point(28, 133);
+            label15.Name = "label15";
+            label15.Size = new Size(127, 20);
+            label15.TabIndex = 2;
+            label15.Text = "- liczba restartów:";
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label14.Location = new Point(28, 74);
+            label14.Name = "label14";
+            label14.Size = new Size(143, 20);
+            label14.TabIndex = 1;
+            label14.Text = "- wielkość listy Tabu:";
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Font = new Font("Segoe UI", 12F, FontStyle.Underline, GraphicsUnit.Point, 238);
+            label13.Location = new Point(28, 42);
+            label13.Name = "label13";
+            label13.Size = new Size(195, 21);
+            label13.TabIndex = 0;
+            label13.Text = "Parametry metaheurystyki:";
             // 
             // tabPage3
             // 
@@ -349,126 +483,15 @@
             tabPage3.Text = "Wyniki";
             tabPage3.UseVisualStyleBackColor = true;
             // 
-            // label11
+            // label20
             // 
-            label11.AutoSize = true;
-            label11.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            label11.Location = new Point(542, 103);
-            label11.Name = "label11";
-            label11.Size = new Size(107, 20);
-            label11.TabIndex = 20;
-            label11.Text = "Rozwiązanie P:";
-            // 
-            // label12
-            // 
-            label12.AutoSize = true;
-            label12.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            label12.Location = new Point(480, 212);
-            label12.Name = "label12";
-            label12.Size = new Size(256, 20);
-            label12.TabIndex = 21;
-            label12.Text = "Multizbiór wejściowy D (edytowalny):";
-            // 
-            // dataGridView2
-            // 
-            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView2.Location = new Point(437, 126);
-            dataGridView2.Name = "dataGridView2";
-            dataGridView2.Size = new Size(325, 65);
-            dataGridView2.TabIndex = 22;
-            // 
-            // dataGridView3
-            // 
-            dataGridView3.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView3.Location = new Point(437, 235);
-            dataGridView3.Name = "dataGridView3";
-            dataGridView3.Size = new Size(325, 130);
-            dataGridView3.TabIndex = 23;
-            // 
-            // label13
-            // 
-            label13.AutoSize = true;
-            label13.Font = new Font("Segoe UI", 12F, FontStyle.Underline, GraphicsUnit.Point, 238);
-            label13.Location = new Point(28, 42);
-            label13.Name = "label13";
-            label13.Size = new Size(195, 21);
-            label13.TabIndex = 0;
-            label13.Text = "Parametry metaheurystyki:";
-            // 
-            // label14
-            // 
-            label14.AutoSize = true;
-            label14.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            label14.Location = new Point(28, 74);
-            label14.Name = "label14";
-            label14.Size = new Size(143, 20);
-            label14.TabIndex = 1;
-            label14.Text = "- wielkość listy Tabu:";
-            // 
-            // label15
-            // 
-            label15.AutoSize = true;
-            label15.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            label15.Location = new Point(28, 105);
-            label15.Name = "label15";
-            label15.Size = new Size(127, 20);
-            label15.TabIndex = 2;
-            label15.Text = "- liczba restartów:";
-            // 
-            // label16
-            // 
-            label16.AutoSize = true;
-            label16.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            label16.Location = new Point(28, 135);
-            label16.Name = "label16";
-            label16.Size = new Size(81, 20);
-            label16.TabIndex = 3;
-            label16.Text = "- kadencja:";
-            // 
-            // button4
-            // 
-            button4.Location = new Point(58, 207);
-            button4.Name = "button4";
-            button4.Size = new Size(93, 33);
-            button4.TabIndex = 4;
-            button4.Text = "Start";
-            button4.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            button5.Location = new Point(58, 296);
-            button5.Name = "button5";
-            button5.Size = new Size(93, 33);
-            button5.TabIndex = 5;
-            button5.Text = "Stop";
-            button5.UseVisualStyleBackColor = true;
-            // 
-            // label17
-            // 
-            label17.AutoSize = true;
-            label17.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            label17.Location = new Point(401, 43);
-            label17.Name = "label17";
-            label17.Size = new Size(203, 20);
-            label17.TabIndex = 6;
-            label17.Text = "Aktualna wartość funkcji celu:";
-            // 
-            // label18
-            // 
-            label18.AutoSize = true;
-            label18.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            label18.Location = new Point(401, 309);
-            label18.Name = "label18";
-            label18.Size = new Size(62, 20);
-            label18.TabIndex = 7;
-            label18.Text = "Progres:";
-            // 
-            // progressBar1
-            // 
-            progressBar1.Location = new Point(401, 332);
-            progressBar1.Name = "progressBar1";
-            progressBar1.Size = new Size(342, 23);
-            progressBar1.TabIndex = 8;
+            label20.AutoSize = true;
+            label20.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label20.Location = new Point(27, 94);
+            label20.Name = "label20";
+            label20.Size = new Size(220, 18);
+            label20.TabIndex = 1;
+            label20.Text = "Wykres funkcji dla Tabu Search:";
             // 
             // label19
             // 
@@ -480,34 +503,27 @@
             label19.TabIndex = 0;
             label19.Text = "Wartość funkcji celu:";
             // 
-            // label20
-            // 
-            label20.AutoSize = true;
-            label20.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            label20.Location = new Point(27, 94);
-            label20.Name = "label20";
-            label20.Size = new Size(220, 18);
-            label20.TabIndex = 1;
-            label20.Text = "Wykres funkcji dla Tabu Search:";
-            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             ClientSize = new Size(800, 450);
             Controls.Add(tabControl1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Form1";
             Text = "Max Subset PDP App";
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             tabPage2.ResumeLayout(false);
             tabPage2.PerformLayout();
             tabPage3.ResumeLayout(false);
             tabPage3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView3).EndInit();
             ResumeLayout(false);
         }
 
@@ -552,5 +568,6 @@
         private Label label18;
         private Label label20;
         private Label label19;
+        private Label label21;
     }
 }
