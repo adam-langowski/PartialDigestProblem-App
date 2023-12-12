@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
             dataGridView3 = new DataGridView();
@@ -53,6 +54,7 @@
             button2 = new Button();
             button1 = new Button();
             tabPage2 = new TabPage();
+            label21 = new Label();
             progressBar1 = new ProgressBar();
             label18 = new Label();
             label17 = new Label();
@@ -334,6 +336,7 @@
             // 
             // tabPage2
             // 
+            tabPage2.Controls.Add(label21);
             tabPage2.Controls.Add(progressBar1);
             tabPage2.Controls.Add(label18);
             tabPage2.Controls.Add(label17);
@@ -350,6 +353,16 @@
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Tabu Search";
             tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // label21
+            // 
+            label21.AutoSize = true;
+            label21.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label21.Location = new Point(28, 103);
+            label21.Name = "label21";
+            label21.Size = new Size(208, 20);
+            label21.TabIndex = 9;
+            label21.Text = "- analizowane sąsiedztwo (%):";
             // 
             // progressBar1
             // 
@@ -389,7 +402,7 @@
             // 
             // button4
             // 
-            button4.Location = new Point(58, 207);
+            button4.Location = new Point(58, 245);
             button4.Name = "button4";
             button4.Size = new Size(93, 33);
             button4.TabIndex = 4;
@@ -400,7 +413,7 @@
             // 
             label16.AutoSize = true;
             label16.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            label16.Location = new Point(28, 135);
+            label16.Location = new Point(28, 162);
             label16.Name = "label16";
             label16.Size = new Size(81, 20);
             label16.TabIndex = 3;
@@ -410,7 +423,7 @@
             // 
             label15.AutoSize = true;
             label15.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            label15.Location = new Point(28, 105);
+            label15.Location = new Point(28, 133);
             label15.Name = "label15";
             label15.Size = new Size(127, 20);
             label15.TabIndex = 2;
@@ -471,8 +484,11 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             ClientSize = new Size(800, 450);
             Controls.Add(tabControl1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Form1";
             Text = "Max Subset PDP App";
             tabControl1.ResumeLayout(false);
@@ -527,5 +543,6 @@
         private Label label18;
         private Label label20;
         private Label label19;
+        private Label label21;
     }
 }
