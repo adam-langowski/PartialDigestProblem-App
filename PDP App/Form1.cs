@@ -12,6 +12,10 @@ namespace PDP_App
 
         private readonly PDPInstanceGenerator instanceGenerator = new();
 
+        public List<int> GetMultiSet() {
+            return D;        
+        }   
+
         public Form1()
         {
             P = [];
@@ -64,13 +68,53 @@ namespace PDP_App
         }
 
         /// <summary>
-        /// Read instance from csv file
+        /// Read instance from txt file
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void button2_Click(object sender, EventArgs e)
         {
+            openFileDialog1.Filter = "Text Files (*.txt)|*.txt";
+            openFileDialog1.Title = "Wybierz plik .txt z instancj¹";
 
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                string filePath = openFileDialog1.FileName;
+                string fileContent = File.ReadAllText(filePath);
+
+                List<int> D = fileContent.Split(',').Select(int.Parse).ToList();
+
+                D.Sort();
+
+                this.D = D;
+
+                richTextBox1.Clear();
+                richTextBox2.Clear();
+                richTextBox2.AppendText(string.Join(", ", D));
+            }
+        }
+
+
+        /// <summary>
+        /// Save instance to file
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button3_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog1 = new()
+            {
+                Filter = "Text Files (*.txt)|*.txt",
+                Title = "Zapisz instancjê do pliku .txt"
+            };
+
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                using (StreamWriter sw = new(saveFileDialog1.FileName))
+                {
+                    sw.Write(richTextBox2.Text);
+                }
+            }
         }
     }
 }

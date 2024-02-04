@@ -31,6 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
+            numericUpDown8 = new NumericUpDown();
+            numericUpDown7 = new NumericUpDown();
             numericUpDown6 = new NumericUpDown();
             numericUpDown5 = new NumericUpDown();
             numericUpDown4 = new NumericUpDown();
@@ -71,10 +73,11 @@
             textBox2 = new TextBox();
             label20 = new Label();
             label19 = new Label();
-            numericUpDown7 = new NumericUpDown();
-            numericUpDown8 = new NumericUpDown();
+            openFileDialog1 = new OpenFileDialog();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown8).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown7).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown4).BeginInit();
@@ -83,8 +86,6 @@
             ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             tabPage3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown7).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown8).BeginInit();
             SuspendLayout();
             // 
             // tabControl1
@@ -127,6 +128,22 @@
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Instancja wejściowa";
             tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // numericUpDown8
+            // 
+            numericUpDown8.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            numericUpDown8.Location = new Point(151, 169);
+            numericUpDown8.Name = "numericUpDown8";
+            numericUpDown8.Size = new Size(56, 27);
+            numericUpDown8.TabIndex = 30;
+            // 
+            // numericUpDown7
+            // 
+            numericUpDown7.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            numericUpDown7.Location = new Point(151, 135);
+            numericUpDown7.Name = "numericUpDown7";
+            numericUpDown7.Size = new Size(56, 27);
+            numericUpDown7.TabIndex = 29;
             // 
             // numericUpDown6
             // 
@@ -211,6 +228,7 @@
             button3.TabIndex = 12;
             button3.Text = "Zatwierdź i zapisz instancję";
             button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
             // 
             // label7
             // 
@@ -530,21 +548,9 @@
             label19.TabIndex = 0;
             label19.Text = "Otrzymana wartość funkcji celu:";
             // 
-            // numericUpDown7
+            // openFileDialog1
             // 
-            numericUpDown7.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            numericUpDown7.Location = new Point(151, 135);
-            numericUpDown7.Name = "numericUpDown7";
-            numericUpDown7.Size = new Size(56, 27);
-            numericUpDown7.TabIndex = 29;
-            // 
-            // numericUpDown8
-            // 
-            numericUpDown8.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            numericUpDown8.Location = new Point(151, 169);
-            numericUpDown8.Name = "numericUpDown8";
-            numericUpDown8.Size = new Size(56, 27);
-            numericUpDown8.TabIndex = 30;
+            openFileDialog1.FileName = "openFileDialog1";
             // 
             // Form1
             // 
@@ -560,6 +566,8 @@
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown8).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown7).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown6).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown5).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown4).EndInit();
@@ -570,8 +578,6 @@
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
             tabPage3.ResumeLayout(false);
             tabPage3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown7).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown8).EndInit();
             ResumeLayout(false);
         }
 
@@ -621,5 +627,6 @@
         private NumericUpDown numericUpDown5;
         private NumericUpDown numericUpDown8;
         private NumericUpDown numericUpDown7;
+        private OpenFileDialog openFileDialog1;
     }
 }
