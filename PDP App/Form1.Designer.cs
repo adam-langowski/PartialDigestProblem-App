@@ -31,22 +31,20 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
+            numericUpDown6 = new NumericUpDown();
+            numericUpDown5 = new NumericUpDown();
+            numericUpDown4 = new NumericUpDown();
             richTextBox2 = new RichTextBox();
             richTextBox1 = new RichTextBox();
             label12 = new Label();
-            domainUpDown5 = new DomainUpDown();
-            domainUpDown4 = new DomainUpDown();
             label10 = new Label();
             label8 = new Label();
             button3 = new Button();
             label7 = new Label();
             label6 = new Label();
-            domainUpDown3 = new DomainUpDown();
-            domainUpDown2 = new DomainUpDown();
             label5 = new Label();
             label4 = new Label();
             label3 = new Label();
-            domainUpDown1 = new DomainUpDown();
             label2 = new Label();
             label1 = new Label();
             button2 = new Button();
@@ -73,13 +71,20 @@
             textBox2 = new TextBox();
             label20 = new Label();
             label19 = new Label();
+            numericUpDown7 = new NumericUpDown();
+            numericUpDown8 = new NumericUpDown();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown6).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown5).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown4).BeginInit();
             tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown7).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown8).BeginInit();
             SuspendLayout();
             // 
             // tabControl1
@@ -95,22 +100,22 @@
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(numericUpDown8);
+            tabPage1.Controls.Add(numericUpDown7);
+            tabPage1.Controls.Add(numericUpDown6);
+            tabPage1.Controls.Add(numericUpDown5);
+            tabPage1.Controls.Add(numericUpDown4);
             tabPage1.Controls.Add(richTextBox2);
             tabPage1.Controls.Add(richTextBox1);
             tabPage1.Controls.Add(label12);
-            tabPage1.Controls.Add(domainUpDown5);
-            tabPage1.Controls.Add(domainUpDown4);
             tabPage1.Controls.Add(label10);
             tabPage1.Controls.Add(label8);
             tabPage1.Controls.Add(button3);
             tabPage1.Controls.Add(label7);
             tabPage1.Controls.Add(label6);
-            tabPage1.Controls.Add(domainUpDown3);
-            tabPage1.Controls.Add(domainUpDown2);
             tabPage1.Controls.Add(label5);
             tabPage1.Controls.Add(label4);
             tabPage1.Controls.Add(label3);
-            tabPage1.Controls.Add(domainUpDown1);
             tabPage1.Controls.Add(label2);
             tabPage1.Controls.Add(label1);
             tabPage1.Controls.Add(button2);
@@ -122,6 +127,33 @@
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Instancja wejściowa";
             tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // numericUpDown6
+            // 
+            numericUpDown6.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            numericUpDown6.Location = new Point(363, 107);
+            numericUpDown6.Name = "numericUpDown6";
+            numericUpDown6.Size = new Size(65, 27);
+            numericUpDown6.TabIndex = 28;
+            numericUpDown6.Value = new decimal(new int[] { 10, 0, 0, 0 });
+            // 
+            // numericUpDown5
+            // 
+            numericUpDown5.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            numericUpDown5.Location = new Point(277, 107);
+            numericUpDown5.Name = "numericUpDown5";
+            numericUpDown5.Size = new Size(41, 27);
+            numericUpDown5.TabIndex = 27;
+            numericUpDown5.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            // 
+            // numericUpDown4
+            // 
+            numericUpDown4.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            numericUpDown4.Location = new Point(204, 73);
+            numericUpDown4.Name = "numericUpDown4";
+            numericUpDown4.Size = new Size(73, 27);
+            numericUpDown4.TabIndex = 26;
+            numericUpDown4.Value = new decimal(new int[] { 5, 0, 0, 0 });
             // 
             // richTextBox2
             // 
@@ -149,26 +181,6 @@
             label12.Size = new Size(256, 20);
             label12.TabIndex = 21;
             label12.Text = "Multizbiór wejściowy D (edytowalny):";
-            // 
-            // domainUpDown5
-            // 
-            domainUpDown5.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            domainUpDown5.Location = new Point(147, 169);
-            domainUpDown5.Name = "domainUpDown5";
-            domainUpDown5.Size = new Size(55, 27);
-            domainUpDown5.TabIndex = 17;
-            domainUpDown5.Text = "0";
-            domainUpDown5.TextAlign = HorizontalAlignment.Center;
-            // 
-            // domainUpDown4
-            // 
-            domainUpDown4.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            domainUpDown4.Location = new Point(126, 137);
-            domainUpDown4.Name = "domainUpDown4";
-            domainUpDown4.Size = new Size(55, 27);
-            domainUpDown4.TabIndex = 16;
-            domainUpDown4.Text = "0";
-            domainUpDown4.TextAlign = HorizontalAlignment.Center;
             // 
             // label10
             // 
@@ -220,26 +232,6 @@
             label6.TabIndex = 10;
             label6.Text = "Obsługiwany format:\r\nPlik txt, z wartościami rozdzielonymi przecinkiem.\r\n";
             // 
-            // domainUpDown3
-            // 
-            domainUpDown3.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            domainUpDown3.Location = new Point(360, 106);
-            domainUpDown3.Name = "domainUpDown3";
-            domainUpDown3.Size = new Size(55, 27);
-            domainUpDown3.TabIndex = 9;
-            domainUpDown3.Text = "20";
-            domainUpDown3.TextAlign = HorizontalAlignment.Center;
-            // 
-            // domainUpDown2
-            // 
-            domainUpDown2.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            domainUpDown2.Location = new Point(263, 106);
-            domainUpDown2.Name = "domainUpDown2";
-            domainUpDown2.Size = new Size(55, 27);
-            domainUpDown2.TabIndex = 8;
-            domainUpDown2.Text = "1";
-            domainUpDown2.TextAlign = HorizontalAlignment.Center;
-            // 
             // label5
             // 
             label5.AutoSize = true;
@@ -266,19 +258,9 @@
             label3.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label3.Location = new Point(20, 76);
             label3.Name = "label3";
-            label3.Size = new Size(255, 20);
+            label3.Size = new Size(178, 20);
             label3.TabIndex = 5;
-            label3.Text = "- ilość elementów w rozwiązaniu (m):";
-            // 
-            // domainUpDown1
-            // 
-            domainUpDown1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            domainUpDown1.Location = new Point(275, 74);
-            domainUpDown1.Name = "domainUpDown1";
-            domainUpDown1.Size = new Size(55, 27);
-            domainUpDown1.TabIndex = 4;
-            domainUpDown1.Text = "10";
-            domainUpDown1.TextAlign = HorizontalAlignment.Center;
+            label3.Text = "- ilość fragmentów mapy:";
             // 
             // label2
             // 
@@ -548,6 +530,22 @@
             label19.TabIndex = 0;
             label19.Text = "Otrzymana wartość funkcji celu:";
             // 
+            // numericUpDown7
+            // 
+            numericUpDown7.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            numericUpDown7.Location = new Point(151, 135);
+            numericUpDown7.Name = "numericUpDown7";
+            numericUpDown7.Size = new Size(56, 27);
+            numericUpDown7.TabIndex = 29;
+            // 
+            // numericUpDown8
+            // 
+            numericUpDown8.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            numericUpDown8.Location = new Point(151, 169);
+            numericUpDown8.Name = "numericUpDown8";
+            numericUpDown8.Size = new Size(56, 27);
+            numericUpDown8.TabIndex = 30;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -562,6 +560,9 @@
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown6).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown5).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown4).EndInit();
             tabPage2.ResumeLayout(false);
             tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown3).EndInit();
@@ -569,6 +570,8 @@
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
             tabPage3.ResumeLayout(false);
             tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown7).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown8).EndInit();
             ResumeLayout(false);
         }
 
@@ -582,19 +585,14 @@
         private Label label2;
         private Label label1;
         private Button button2;
-        private DomainUpDown domainUpDown1;
         private Label label5;
         private Label label4;
         private Label label3;
-        private DomainUpDown domainUpDown3;
-        private DomainUpDown domainUpDown2;
         private Label label6;
         private Label label7;
         private Button button3;
         private Label label10;
         private Label label8;
-        private DomainUpDown domainUpDown5;
-        private DomainUpDown domainUpDown4;
         private Label label12;
         private Label label13;
         private Label label15;
@@ -618,5 +616,10 @@
         private TextBox textBox2;
         private RichTextBox richTextBox3;
         private Label label11;
+        private NumericUpDown numericUpDown4;
+        private NumericUpDown numericUpDown6;
+        private NumericUpDown numericUpDown5;
+        private NumericUpDown numericUpDown8;
+        private NumericUpDown numericUpDown7;
     }
 }
