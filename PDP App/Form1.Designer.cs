@@ -74,6 +74,8 @@
             label20 = new Label();
             label19 = new Label();
             openFileDialog1 = new OpenFileDialog();
+            label16 = new Label();
+            richTextBox4 = new RichTextBox();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown8).BeginInit();
@@ -101,6 +103,8 @@
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(richTextBox4);
+            tabPage1.Controls.Add(label16);
             tabPage1.Controls.Add(numericUpDown8);
             tabPage1.Controls.Add(numericUpDown7);
             tabPage1.Controls.Add(numericUpDown6);
@@ -174,9 +178,9 @@
             // 
             // richTextBox2
             // 
-            richTextBox2.Location = new Point(445, 171);
+            richTextBox2.Location = new Point(445, 223);
             richTextBox2.Name = "richTextBox2";
-            richTextBox2.Size = new Size(308, 194);
+            richTextBox2.Size = new Size(308, 150);
             richTextBox2.TabIndex = 25;
             richTextBox2.Text = "";
             // 
@@ -185,7 +189,7 @@
             richTextBox1.Location = new Point(445, 43);
             richTextBox1.Name = "richTextBox1";
             richTextBox1.ReadOnly = true;
-            richTextBox1.Size = new Size(308, 91);
+            richTextBox1.Size = new Size(308, 57);
             richTextBox1.TabIndex = 24;
             richTextBox1.Text = "";
             // 
@@ -193,7 +197,7 @@
             // 
             label12.AutoSize = true;
             label12.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            label12.Location = new Point(469, 144);
+            label12.Location = new Point(473, 200);
             label12.Name = "label12";
             label12.Size = new Size(256, 20);
             label12.TabIndex = 21;
@@ -222,7 +226,7 @@
             // button3
             // 
             button3.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            button3.Location = new Point(545, 371);
+            button3.Location = new Point(545, 379);
             button3.Name = "button3";
             button3.Size = new Size(208, 35);
             button3.TabIndex = 12;
@@ -552,6 +556,25 @@
             // 
             openFileDialog1.FileName = "openFileDialog1";
             // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label16.Location = new Point(536, 109);
+            label16.Name = "label16";
+            label16.Size = new Size(107, 20);
+            label16.TabIndex = 31;
+            label16.Text = "Rozwiązanie P:";
+            // 
+            // richTextBox4
+            // 
+            richTextBox4.Location = new Point(445, 132);
+            richTextBox4.Name = "richTextBox4";
+            richTextBox4.ReadOnly = true;
+            richTextBox4.Size = new Size(308, 57);
+            richTextBox4.TabIndex = 32;
+            richTextBox4.Text = "";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -628,5 +651,7 @@
         private NumericUpDown numericUpDown8;
         private NumericUpDown numericUpDown7;
         private OpenFileDialog openFileDialog1;
+        private RichTextBox richTextBox4;
+        private Label label16;
     }
 }

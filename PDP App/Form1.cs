@@ -2,7 +2,8 @@ namespace PDP_App
 {
     public partial class Form1 : Form
     {
-        private List<int> P; // mapa P'
+        private List<int> P; // fragmenty P'
+        private List<int> Cuts; // mapa ciêæ - rozwi¹zanie
         private List<int> D; // multizbiór wejœciowy
         private int m; // iloœæ fragmentów w mapie P'
         private int minLength; // min d³ugoœæ elementów w mapie P'
@@ -12,14 +13,16 @@ namespace PDP_App
 
         private readonly PDPInstanceGenerator instanceGenerator = new();
 
-        public List<int> GetMultiSet() {
-            return D;        
-        }   
+        public List<int> GetMultiSet()
+        {
+            return D;
+        }
 
         public Form1()
         {
             P = [];
             D = [];
+            Cuts = [];
             InitializeComponent();
         }
 
@@ -55,14 +58,17 @@ namespace PDP_App
 
             P = instanceGenerator.GenerateSolution(m, minLength, maxLength);
             D = instanceGenerator.GenerateMultiset(P, deletionCount, substitutionCount, minLength, maxLength);
+            Cuts = instanceGenerator.GenerateCutsMap(P);
 
             richTextBox1.Clear();
             richTextBox2.Clear();
+            richTextBox4.Clear();
 
             if (instanceGenerator.errorsSuccessful)
             {
                 richTextBox1.AppendText(string.Join(", ", P));
                 richTextBox2.AppendText(string.Join(", ", D));
+                richTextBox4.AppendText(string.Join(", ", Cuts));
             }
 
         }
@@ -110,10 +116,8 @@ namespace PDP_App
 
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                using (StreamWriter sw = new(saveFileDialog1.FileName))
-                {
-                    sw.Write(richTextBox2.Text);
-                }
+                using StreamWriter sw = new(saveFileDialog1.FileName);
+                sw.Write(richTextBox2.Text);
             }
         }
     }

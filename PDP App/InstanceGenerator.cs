@@ -1,8 +1,9 @@
 ﻿class PDPInstanceGenerator
 {
     private readonly Random random;
-    private readonly List<int> P;
-    private readonly List<int> D;
+    private readonly List<int> P;    // fragments
+    private readonly List<int> D;    // multiset - tabu input
+    private readonly List<int> Cuts; // map of cuts
     public bool errorsSuccessful;
 
     public PDPInstanceGenerator()
@@ -10,6 +11,7 @@
         random = new Random();
         P = [];
         D = [];
+        Cuts = [];
         errorsSuccessful = false;
     }
 
@@ -32,6 +34,27 @@
         }
 
         return P;
+    }
+
+    /// <summary>
+    /// Generating map - values are cuts sites
+    /// </summary>
+    /// <param name="fragments"></param>
+    /// <returns></returns>
+    public List<int> GenerateCutsMap(List<int> fragments)
+    {
+        Cuts.Clear();
+
+        int sum = 0;
+        Cuts.Add(sum);
+
+        foreach (int fragment in fragments)
+        {
+            sum += fragment;
+            Cuts.Add(sum);
+        }
+
+        return Cuts;
     }
 
     /// <summary>
