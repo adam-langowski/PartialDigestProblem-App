@@ -11,6 +11,8 @@ namespace PDP_App
         private int deletionCount; // liczba delecji
         private int substitutionCount; // liczba substytucji
 
+        private TabuAlgorithm tabuAlgorithm;
+
         private readonly PDPInstanceGenerator instanceGenerator = new();
 
         public List<int> GetMultiSet()
@@ -96,6 +98,7 @@ namespace PDP_App
 
                 richTextBox1.Clear();
                 richTextBox2.Clear();
+                richTextBox4.Clear();
                 richTextBox2.AppendText(string.Join(", ", D));
             }
         }
@@ -119,6 +122,33 @@ namespace PDP_App
                 using StreamWriter sw = new(saveFileDialog1.FileName);
                 sw.Write(richTextBox2.Text);
             }
+        }
+
+        /// <summary>
+        /// Start tabu search
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button4_Click(object sender, EventArgs e)
+        {
+            int tabuSize = (int)numericUpDown1.Value;
+            int neighbourhoodPercent = (int)numericUpDown2.Value;
+            int restartCount = (int)numericUpDown3.Value;
+            int iterations = int.Parse(textBox4.Text);
+
+            tabuAlgorithm = new(tabuSize, neighbourhoodPercent, restartCount, iterations, this);
+
+            tabuAlgorithm.GenerateInitialSolution();
+        }
+
+        /// <summary>
+        /// Stop tabu search
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button5_Click(object sender, EventArgs e)
+        {
+            tabuAlgorithm?.StopTabu();
         }
     }
 }
