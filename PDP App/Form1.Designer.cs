@@ -201,6 +201,7 @@
             // 
             richTextBox2.Location = new Point(445, 223);
             richTextBox2.Name = "richTextBox2";
+            richTextBox2.ReadOnly = true;
             richTextBox2.Size = new Size(308, 150);
             richTextBox2.TabIndex = 25;
             richTextBox2.Text = "";

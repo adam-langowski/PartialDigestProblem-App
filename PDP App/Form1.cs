@@ -11,13 +11,49 @@ namespace PDP_App
         private int deletionCount; // liczba delecji
         private int substitutionCount; // liczba substytucji
 
-        private TabuAlgorithm tabuAlgorithm;
+        private TabuAlgorithm? tabuAlgorithm = null;
 
         private readonly PDPInstanceGenerator instanceGenerator = new();
 
+        /// <summary>
+        /// Gets instance input
+        /// </summary>
+        /// <returns></returns>
         public List<int> GetMultiSet()
         {
             return D;
+        }
+
+        /// <summary>
+        /// Returns triangle number based on instance D size
+        /// (no errors assumed)
+        /// Tn = (n*(n+1) / 2
+        /// </summary>
+        /// <returns></returns>
+        public int GetMaxElementsSolutionCount()
+        {
+            int triangularNumber = D.Count;
+
+            // wspó³czynniki równania kwadratowego
+            double a = 1;
+            double b = 1;
+            double c = -2 * triangularNumber;
+
+            double delta = b * b - 4 * a * c;
+
+            if (delta >= 0)
+            {
+                double root1 = (-b + Math.Sqrt(delta)) / (2 * a);
+                double root2 = (-b - Math.Sqrt(delta)) / (2 * a);
+
+                // dodatni pierwiastek
+                double n = (root1 >= 0) ? root1 : root2;
+
+                return (int)Math.Round(n);
+            }
+
+            MessageBox.Show("Error in calculating Solution size");
+            return -1;
         }
 
         public Form1()

@@ -2,21 +2,27 @@
 {
     class TabuAlgorithm(int tabuListSize, int neighbourhoodPercent, int restarts, int iterations, Form1 form1)
     {
+        private readonly Form1 form1 = form1;
+
         private readonly List<int> D = form1.GetMultiSet();  // multizbiór wejściowy
         private List<int> Solution = [];                     // rozwiązanie P
+
+        // wartość do obliczenia funkcji celu 
+        private readonly int maxCutsCount = form1.GetMaxElementsSolutionCount();
+        private float objectiveFunction;
+
         private readonly int tabuListSize = tabuListSize;
         private readonly int neighbourhoodPercent = neighbourhoodPercent;
         private readonly int restartCount = restarts;
         private readonly int iterations = iterations;
-        private float objectiveFunction;
-        private readonly Form1 form1 = form1;
+
 
         /// <summary>
         /// Calculating objective function
         /// </summary>
         public void CalculateObjectiveFunction()
         {
-            objectiveFunction = 0;
+            objectiveFunction = (float)Solution.Count / maxCutsCount;
             form1.textBox1.Text = objectiveFunction.ToString();
         }
 
