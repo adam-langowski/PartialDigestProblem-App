@@ -157,7 +157,7 @@
             // numericUpDown8
             // 
             numericUpDown8.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            numericUpDown8.Location = new Point(151, 169);
+            numericUpDown8.Location = new Point(151, 176);
             numericUpDown8.Name = "numericUpDown8";
             numericUpDown8.Size = new Size(56, 27);
             numericUpDown8.TabIndex = 30;
@@ -165,7 +165,7 @@
             // numericUpDown7
             // 
             numericUpDown7.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            numericUpDown7.Location = new Point(151, 135);
+            numericUpDown7.Location = new Point(151, 145);
             numericUpDown7.Name = "numericUpDown7";
             numericUpDown7.Size = new Size(56, 27);
             numericUpDown7.TabIndex = 29;
@@ -173,18 +173,18 @@
             // numericUpDown6
             // 
             numericUpDown6.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            numericUpDown6.Location = new Point(363, 107);
+            numericUpDown6.Location = new Point(352, 104);
             numericUpDown6.Name = "numericUpDown6";
-            numericUpDown6.Size = new Size(65, 27);
+            numericUpDown6.Size = new Size(56, 27);
             numericUpDown6.TabIndex = 28;
             numericUpDown6.Value = new decimal(new int[] { 10, 0, 0, 0 });
             // 
             // numericUpDown5
             // 
             numericUpDown5.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            numericUpDown5.Location = new Point(277, 107);
+            numericUpDown5.Location = new Point(265, 104);
             numericUpDown5.Name = "numericUpDown5";
-            numericUpDown5.Size = new Size(41, 27);
+            numericUpDown5.Size = new Size(45, 27);
             numericUpDown5.TabIndex = 27;
             numericUpDown5.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
@@ -219,17 +219,17 @@
             // 
             label12.AutoSize = true;
             label12.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            label12.Location = new Point(473, 200);
+            label12.Location = new Point(439, 200);
             label12.Name = "label12";
-            label12.Size = new Size(256, 20);
+            label12.Size = new Size(314, 20);
             label12.TabIndex = 21;
-            label12.Text = "Multizbiór wejściowy D (edytowalny):";
+            label12.Text = "Multizbiór wejściowy D (z zadanymi błędami):";
             // 
             // label10
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            label10.Location = new Point(20, 171);
+            label10.Location = new Point(20, 176);
             label10.Name = "label10";
             label10.Size = new Size(125, 20);
             label10.TabIndex = 15;
@@ -239,7 +239,7 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            label8.Location = new Point(20, 137);
+            label8.Location = new Point(20, 147);
             label8.Name = "label8";
             label8.Size = new Size(100, 20);
             label8.TabIndex = 13;
@@ -280,7 +280,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            label5.Location = new Point(324, 106);
+            label5.Location = new Point(316, 106);
             label5.Name = "label5";
             label5.Size = new Size(30, 20);
             label5.TabIndex = 7;
@@ -340,7 +340,7 @@
             // button1
             // 
             button1.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            button1.Location = new Point(20, 215);
+            button1.Location = new Point(20, 223);
             button1.Name = "button1";
             button1.Size = new Size(199, 35);
             button1.TabIndex = 0;

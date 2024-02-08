@@ -27,7 +27,7 @@ namespace PDP_App
         /// <summary>
         /// Returns triangle number based on instance D size
         /// (no errors assumed)
-        /// Tn = (n*(n+1) / 2
+        /// Tn = (n*(n+1) / 2   - return n
         /// </summary>
         /// <returns></returns>
         public int GetMaxElementsSolutionCount()
@@ -49,7 +49,7 @@ namespace PDP_App
                 // dodatni pierwiastek
                 double n = (root1 >= 0) ? root1 : root2;
 
-                return (int)Math.Round(n);
+                return (int)Math.Round(n) + 1;
             }
 
             MessageBox.Show("Error in calculating Solution size");
