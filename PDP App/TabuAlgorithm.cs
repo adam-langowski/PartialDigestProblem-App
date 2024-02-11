@@ -47,12 +47,21 @@
 
             // wygenerowanie rozwiązania początkowego
             List<int> addedNumbers = GenerateInitialNumbers();
-            Solution = [0, .. addedNumbers];
+            Solution = addedNumbers;
 
             BestSolution = Solution;
             form1.richTextBox5.AppendText(string.Join(", ", Solution));
             float startingValue = CalculateObjectiveFunction();
             form1.textBox1.Text = startingValue.ToString();
+        }
+
+        /// <summary>
+        /// Generating new unitial Solution after each restart
+        /// </summary>
+        public void GenerateNewInitialSolution()
+        {
+            List<int> addedNumbers = GenerateInitialNumbers();
+            Solution = [0, .. addedNumbers];
         }
 
         /// <summary>
@@ -65,32 +74,70 @@
 
             if (D.Count >= 2)
             {
-                addedNumbers.Add(D[0]);
+                addedNumbers.Add(0); // dodaj 0 do rozwiązania
 
-                int secondNumberIndex = 1;
-
-                // wartość inna niż już obecna w Solution i różnica w D
-                while (D[secondNumberIndex] == D[0] || !D.Contains(D[secondNumberIndex] - D[0]))
+                // utwórz listę indeksów elementów z D, które nie są równe 0
+                List<int> indices = new List<int>();
+                for (int i = 0; i < D.Count; i++)
                 {
-                    secondNumberIndex++;
+                    if (D[i] != 0)
+                    {
+                        indices.Add(i);
+                    }
                 }
 
-                if (secondNumberIndex < D.Count)
+                // losowo wymieszaj listę indeksów
+                Random random = new();
+                for (int i = 0; i < indices.Count; i++)
                 {
-                    addedNumbers.Add(D[secondNumberIndex]);
+                    int j = random.Next(i, indices.Count);
+                    int temp = indices[i];
+                    indices[i] = indices[j];
+                    indices[j] = temp;
+                }
+
+                // iteruj po liście indeksów i próbuj dodać elementy z D do rozwiązania
+                int k = 0; // licznik dodanych elementów
+                foreach (int index in indices)
+                {
+                    // sprawdź, czy dodanie elementu nie spowoduje powtórzenia się jakiejś różnicy
+                    bool isDuplicate = false;
+                    foreach (int number in addedNumbers)
+                    {
+                        int difference = D[index] - number; // różnica między elementami
+                        if (addedNumbers.Count(x => x == difference) >= D.Count(x => x == difference)) // jeśli liczba wystąpień różnicy w rozwiązaniu jest równa lub większa niż liczba wystąpień różnicy w D
+                        {
+                            isDuplicate = true;
+                            break;
+                        }
+                    }
+
+                    if (!isDuplicate) // jeśli nie ma powtórzenia się różnicy
+                    {
+                        addedNumbers.Add(D[index]); // dodaj element do rozwiązania
+                        k++; // zwiększ licznik
+                        if (k == 2) // jeśli dodano już 2 elementy
+                        {
+                            break; // zakończ pętlę
+                        }
+                    }
                 }
             }
 
             return addedNumbers;
         }
 
+
         /// <summary>
         /// Start tabu
         /// </summary>
         public void SearchSolutionSpace()
         {
-            for (int r = 0; r < restartCount+1; r++)
+            for (int r = 0; r < restartCount + 1; r++)
             {
+                if (r != 0)
+                    GenerateNewInitialSolution();
+
                 List<List<int>> tabuList = [new List<int>(Solution)];
 
                 int iter = 0; //iteration counter
@@ -171,29 +218,43 @@
 
             foreach (int element in D)
             {
-                // Try to add the element to the current solution, if it is not already in it
                 if (!Solution.Contains(element))
                 {
-                    // Create a copy of the current solution
                     List<int> newSolution = new(Solution)
                     {
-                        // Add the element to the copy
                         element
                     };
 
-                    // Sort the copy in ascending order
                     newSolution.Sort();
-
                     // Check if the copy is feasible, i.e. the differences of every pair of elements are in D
+                    // and do not exceed their occurrences in D
+
                     bool isFeasible = true;
+
+                    // A dictionary to store the differences and their counts
+                    Dictionary<int, int> differences = []; 
+
                     for (int i = 0; i < newSolution.Count - 1; i++)
                     {
                         for (int j = i + 1; j < newSolution.Count; j++)
                         {
-                            if (!D.Contains(newSolution[j] - newSolution[i]))
+                            int difference = newSolution[j] - newSolution[i];
+                            // If the difference is not in D or exceeds its count in D
+                            if (!D.Contains(difference) || (differences.ContainsKey(difference) && differences[difference] >= D.Count(x => x == difference))) 
                             {
                                 isFeasible = false;
                                 break;
+                            }
+                            else // If the difference is in D and does not exceed its count in D
+                            {
+                                if (differences.ContainsKey(difference)) // If the difference is already in the dictionary
+                                {
+                                    differences[difference]++; // Increment its count
+                                }
+                                else // If the difference is not in the dictionary
+                                {
+                                    differences.Add(difference, 1); // Add it with count 1
+                                }
                             }
                         }
                         if (!isFeasible)
@@ -201,31 +262,22 @@
                             break;
                         }
                     }
-
-                    // If the copy is feasible, add it to the neighbourhood
                     if (isFeasible)
                     {
                         neighbourhood.Add(newSolution);
                     }
                 }
 
-                // Try to remove the element from the current solution, if it is in it
                 if (Solution.Contains(element))
                 {
-                    // Create a copy of the current solution
                     List<int> newSolution = new(Solution);
-
-                    // Remove the element from the copy
                     newSolution.Remove(element);
-
-                    // Add the copy to the neighbourhood
                     neighbourhood.Add(newSolution);
                 }
             }
-
-            // Return the neighbourhood list
             return neighbourhood;
         }
+
 
         /// <summary>
         /// Diversyfying - deleting some part of current Solution
@@ -235,23 +287,20 @@
             float deletedPercentOfSolution = 30;
             int deletedValueCount = (int)Math.Round(deletedPercentOfSolution / 100 * Solution.Count);
 
-            // Create a copy of the current solution
+            // copy of the current solution
             List<int> newSolution = new(Solution);
 
-            // Repeat until the number of elements is reached
             for (int i = 0; i < deletedValueCount; i++)
             {
                 // Randomly select an element from the current solution
                 int element = newSolution[random.Next(newSolution.Count)];
 
-                // Remove the element from the new solution
+                // Remove the element 
                 newSolution.Remove(element);
             }
 
-            // Sort the new solution in ascending order
             newSolution.Sort();
 
-            // Update the current solution to the new solution
             Solution = newSolution;
         }
 
@@ -263,10 +312,10 @@
         /// <returns></returns>
         private bool IsTabu(List<int> solution, List<List<int>> tabuList)
         {
-            // Loop through all solutions on the tabu list
+            // Loop through all solutions on tabu list
             foreach (List<int> tabuSolution in tabuList)
             {
-                // Compare the solution with the tabu solution
+                // Compare the solutions
                 bool isEqual = true;
                 for (int i = 0; i < solution.Count; i++)
                 {
@@ -276,14 +325,11 @@
                         break;
                     }
                 }
-
-                // If the solution is equal to the tabu solution, return true
                 if (isEqual)
                 {
                     return true;
                 }
             }
-
             // If the solution is not equal to any tabu solution, return false
             return false;
         }
