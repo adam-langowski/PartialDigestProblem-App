@@ -18,6 +18,7 @@
         private readonly int restartCount = restarts;
         private readonly int iterations = iterations;
 
+        private readonly Random random = new();
 
         /// <summary>
         /// Calculating objective function
@@ -31,7 +32,7 @@
         /// <summary>
         /// Calculating final objective function - for BestSolution
         /// </summary>
-        public void CalculateFinalObjectiveFunctionValue() 
+        public void CalculateFinalObjectiveFunctionValue()
         {
             finalObjectiveFunction = (float)BestSolution.Count / maxCutsCount;
             form1.textBox2.Text = finalObjectiveFunction.ToString();
@@ -67,7 +68,7 @@
                 addedNumbers.Add(D[0]);
 
                 int secondNumberIndex = 1;
-                
+
                 // wartość inna niż już obecna w Solution i różnica w D
                 while (D[secondNumberIndex] == D[0] || !D.Contains(D[secondNumberIndex] - D[0]))
                 {
@@ -88,11 +89,12 @@
         /// </summary>
         public void SearchSolutionSpace()
         {
-            for (int r = 0; r < restartCount; r++)
+            for (int r = 0; r < restartCount+1; r++)
             {
                 List<List<int>> tabuList = [new List<int>(Solution)];
 
                 int iter = 0; //iteration counter
+                int noImprovementCount = 0; //number of iterations without improvement
 
                 while (iter < iterations)
                 {
@@ -124,6 +126,11 @@
                     {
                         BestSolution = Solution;
                         finalObjectiveFunction = objectiveFunction;
+                        noImprovementCount = 0;
+                    }
+                    else
+                    {
+                        noImprovementCount++; //increment the counter
                     }
 
                     // Add the current solution to the tabu list and remove the oldest one if the tabu list is full
@@ -131,6 +138,17 @@
                     if (tabuList.Count > tabuListSize)
                     {
                         tabuList.RemoveAt(0);
+                    }
+
+                    float percentOfIterations = 5; // add as parameter
+                    int iterationsWithoutDiversification = (int)Math.Round(percentOfIterations / 100 * iterations);
+                    // Check if the diversification condition is met
+                    if (noImprovementCount >= iterationsWithoutDiversification)
+                    {
+                        // Diversify the current solution
+                        Diversify();
+                        // Reset the counter
+                        noImprovementCount = 0;
                     }
 
                     iter++;
@@ -210,6 +228,34 @@
         }
 
         /// <summary>
+        /// Diversyfying - deleting some part of current Solution
+        /// </summary>
+        private void Diversify()
+        {
+            float deletedPercentOfSolution = 30;
+            int deletedValueCount = (int)Math.Round(deletedPercentOfSolution / 100 * Solution.Count);
+
+            // Create a copy of the current solution
+            List<int> newSolution = new(Solution);
+
+            // Repeat until the number of elements is reached
+            for (int i = 0; i < deletedValueCount; i++)
+            {
+                // Randomly select an element from the current solution
+                int element = newSolution[random.Next(newSolution.Count)];
+
+                // Remove the element from the new solution
+                newSolution.Remove(element);
+            }
+
+            // Sort the new solution in ascending order
+            newSolution.Sort();
+
+            // Update the current solution to the new solution
+            Solution = newSolution;
+        }
+
+        /// <summary>
         /// Checks tabu list
         /// </summary>
         /// <param name="solution"></param>
@@ -224,9 +270,9 @@
                 bool isEqual = true;
                 for (int i = 0; i < solution.Count; i++)
                 {
-                    if(solution.Count > tabuSolution.Count || solution[i] != tabuSolution[i])
+                    if (solution.Count > tabuSolution.Count || solution[i] != tabuSolution[i])
                     {
-                        isEqual = false; 
+                        isEqual = false;
                         break;
                     }
                 }
