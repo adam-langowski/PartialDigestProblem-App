@@ -22,10 +22,10 @@
         /// <summary>
         /// Calculating objective function
         /// </summary>
-        public void CalculateObjectiveFunction()
+        public float CalculateObjectiveFunction()
         {
             objectiveFunction = (float)Solution.Count / maxCutsCount;
-            form1.textBox1.Text = objectiveFunction.ToString();
+            return objectiveFunction;
         }
 
         /// <summary>
@@ -50,7 +50,8 @@
 
             BestSolution = Solution;
             form1.richTextBox5.AppendText(string.Join(", ", Solution));
-            CalculateObjectiveFunction();
+            float startingValue = CalculateObjectiveFunction();
+            form1.textBox1.Text = startingValue.ToString();
         }
 
         /// <summary>
@@ -83,6 +84,185 @@
         }
 
         /// <summary>
+        /// Start tabu
+        /// </summary>
+        public void SearchSolutionSpace()
+        {
+            for (int r = 0; r < restartCount; r++)
+            {
+                List<List<int>> tabuList = [new List<int>(Solution)];
+
+                int iter = 0; //iteration counter
+
+                while (iter < iterations)
+                {
+                    List<List<int>> neighbourhood = GenerateNeighbourhood();
+
+                    // Find the best candidate
+                    List<int>? bestCandidate = null;
+                    float bestCandidateFitness = -1;
+                    foreach (List<int> candidate in neighbourhood)
+                    {
+                        if ((!IsTabu(candidate, tabuList) || SatisfiesAspirationCriterion(candidate)) && Fitness(candidate) > bestCandidateFitness)
+                        {
+                            bestCandidate = candidate;
+                            bestCandidateFitness = Fitness(candidate);
+                        }
+                    }
+
+                    if (bestCandidate == null)
+                    {
+                        break; //returns BestSolution
+                    }
+
+                    Solution = bestCandidate;
+                    float currentValue = CalculateObjectiveFunction();
+                    form1.textBox1.Text = currentValue.ToString();
+
+                    // update the best solution if it's better 
+                    if (objectiveFunction > finalObjectiveFunction)
+                    {
+                        BestSolution = Solution;
+                        finalObjectiveFunction = objectiveFunction;
+                    }
+
+                    // Add the current solution to the tabu list and remove the oldest one if the tabu list is full
+                    tabuList.Add(Solution);
+                    if (tabuList.Count > tabuListSize)
+                    {
+                        tabuList.RemoveAt(0);
+                    }
+
+                    iter++;
+                }
+            }
+            CalculateFinalObjectiveFunctionValue();
+            form1.richTextBox3.Clear();
+            form1.richTextBox3.AppendText(string.Join(", ", BestSolution));
+
+            DrawChart();
+        }
+
+        /// <summary>
+        /// Generating neighbourhood from current solution
+        /// </summary>
+        /// <returns></returns>
+        private List<List<int>> GenerateNeighbourhood()
+        {
+            List<List<int>> neighbourhood = [];
+
+            foreach (int element in D)
+            {
+                // Try to add the element to the current solution, if it is not already in it
+                if (!Solution.Contains(element))
+                {
+                    // Create a copy of the current solution
+                    List<int> newSolution = new(Solution)
+                    {
+                        // Add the element to the copy
+                        element
+                    };
+
+                    // Sort the copy in ascending order
+                    newSolution.Sort();
+
+                    // Check if the copy is feasible, i.e. the differences of every pair of elements are in D
+                    bool isFeasible = true;
+                    for (int i = 0; i < newSolution.Count - 1; i++)
+                    {
+                        for (int j = i + 1; j < newSolution.Count; j++)
+                        {
+                            if (!D.Contains(newSolution[j] - newSolution[i]))
+                            {
+                                isFeasible = false;
+                                break;
+                            }
+                        }
+                        if (!isFeasible)
+                        {
+                            break;
+                        }
+                    }
+
+                    // If the copy is feasible, add it to the neighbourhood
+                    if (isFeasible)
+                    {
+                        neighbourhood.Add(newSolution);
+                    }
+                }
+
+                // Try to remove the element from the current solution, if it is in it
+                if (Solution.Contains(element))
+                {
+                    // Create a copy of the current solution
+                    List<int> newSolution = new(Solution);
+
+                    // Remove the element from the copy
+                    newSolution.Remove(element);
+
+                    // Add the copy to the neighbourhood
+                    neighbourhood.Add(newSolution);
+                }
+            }
+
+            // Return the neighbourhood list
+            return neighbourhood;
+        }
+
+        /// <summary>
+        /// Checks tabu list
+        /// </summary>
+        /// <param name="solution"></param>
+        /// <param name="tabuList"></param>
+        /// <returns></returns>
+        private bool IsTabu(List<int> solution, List<List<int>> tabuList)
+        {
+            // Loop through all solutions on the tabu list
+            foreach (List<int> tabuSolution in tabuList)
+            {
+                // Compare the solution with the tabu solution
+                bool isEqual = true;
+                for (int i = 0; i < solution.Count; i++)
+                {
+                    if(solution.Count > tabuSolution.Count || solution[i] != tabuSolution[i])
+                    {
+                        isEqual = false; 
+                        break;
+                    }
+                }
+
+                // If the solution is equal to the tabu solution, return true
+                if (isEqual)
+                {
+                    return true;
+                }
+            }
+
+            // If the solution is not equal to any tabu solution, return false
+            return false;
+        }
+
+        /// <summary>
+        /// Calculates the value of the objective function for a given solution
+        /// </summary>
+        /// <param name="solution"></param>
+        /// <returns></returns>
+        private float Fitness(List<int> solution)
+        {
+            return (float)solution.Count / maxCutsCount;
+        }
+
+        /// <summary>
+        /// Compare the value of the objective function for the solution and the best solution
+        /// </summary>
+        /// <param name="solution"></param>
+        /// <returns></returns>
+        private bool SatisfiesAspirationCriterion(List<int> solution)
+        {
+            return Fitness(solution) > finalObjectiveFunction;
+        }
+
+        /// <summary>
         /// Stopping tabu search
         /// </summary>
         public void StopTabu()
@@ -91,7 +271,15 @@
             form1.richTextBox3.Clear();
             form1.richTextBox3.AppendText(string.Join(", ", BestSolution));
 
-            //chart
+            DrawChart();
+        }
+
+        /// <summary>
+        /// Draw chart of objective function value change in time
+        /// </summary>
+        public void DrawChart()
+        {
+
         }
 
     }

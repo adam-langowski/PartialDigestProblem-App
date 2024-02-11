@@ -2,18 +2,25 @@ namespace PDP_App
 {
     public partial class Form1 : Form
     {
-        private List<int> P; // fragmenty P'
-        private List<int> Cuts; // mapa ciêæ - rozwi¹zanie
-        private List<int> D; // multizbiór wejœciowy
-        private int m; // iloœæ fragmentów w mapie P'
-        private int minLength; // min d³ugoœæ elementów w mapie P'
-        private int maxLength; // max d³ugoœæ elementów w mapie P'
-        private int deletionCount; // liczba delecji
-        private int substitutionCount; // liczba substytucji
+        private List<int> P;            // fragmenty P'
+        private List<int> Cuts;         // mapa ciêæ - rozwi¹zanie
+        private List<int> D;            // multizbiór wejœciowy
+        private int m;                  // iloœæ fragmentów w mapie P'
+        private int minLength;          // min d³ugoœæ elementów w mapie P'
+        private int maxLength;          // max d³ugoœæ elementów w mapie P'
+        private int deletionCount;      // liczba delecji
+        private int substitutionCount;  // liczba substytucji
 
         private TabuAlgorithm? tabuAlgorithm = null;
-
         private readonly PDPInstanceGenerator instanceGenerator = new();
+
+        public Form1()
+        {
+            P = [];
+            D = [];
+            Cuts = [];
+            InitializeComponent();
+        }
 
         /// <summary>
         /// Gets instance input
@@ -54,14 +61,6 @@ namespace PDP_App
 
             MessageBox.Show("Error in calculating Solution size");
             return -1;
-        }
-
-        public Form1()
-        {
-            P = [];
-            D = [];
-            Cuts = [];
-            InitializeComponent();
         }
 
         /// <summary>
@@ -139,7 +138,6 @@ namespace PDP_App
             }
         }
 
-
         /// <summary>
         /// Save instance to file
         /// </summary>
@@ -175,6 +173,8 @@ namespace PDP_App
             tabuAlgorithm = new(tabuSize, neighbourhoodPercent, restartCount, iterations, this);
 
             tabuAlgorithm.GenerateInitialSolution();
+
+            tabuAlgorithm.SearchSolutionSpace();
         }
 
         /// <summary>
