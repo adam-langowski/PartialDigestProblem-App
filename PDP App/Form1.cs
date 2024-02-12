@@ -190,6 +190,16 @@ namespace PDP_App
             stopwatch = new Stopwatch();
             stopwatch.Start();
 
+            button1.Enabled = false;
+            button2.Enabled = false;
+            button3.Enabled = false;
+            button4.Enabled = false;
+            numericUpDown3.Enabled = false;
+            textBox4.Enabled = false;
+            numericUpDown1.Enabled = false;
+            numericUpDown2.Enabled = false;
+            numericUpDown9.Enabled = false;
+
             tabuWorker = new BackgroundWorker();
             tabuWorker.DoWork += new DoWorkEventHandler(tabuWorker_DoWork);
             tabuWorker.RunWorkerAsync();
@@ -242,7 +252,26 @@ namespace PDP_App
             tabuAlgorithm.SearchSolutionSpace();
 
             stopwatch.Stop();
+
+            UpdateUI(() =>
+            {
+                button1.Enabled = true;
+                button2.Enabled = true;
+                button3.Enabled = true;
+                button4.Enabled = true;
+                numericUpDown3.Enabled = true;
+                numericUpDown1.Enabled = true;
+                numericUpDown2.Enabled = true;
+                numericUpDown9.Enabled = true;
+                textBox4.Enabled = true;
+            });
         }
+
+        /// <summary>
+        /// Timer updating
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void timer1_Tick(object sender, EventArgs e)
         {
             if (stopwatch != null)

@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using System.Windows.Forms.DataVisualization.Charting;
+﻿using System.Windows.Forms.DataVisualization.Charting;
 
 namespace PDP_App
 {
@@ -168,13 +167,7 @@ namespace PDP_App
                 if (r != 0)
                 {
                     form1.UpdateUI(() => form1.progressBar1.Value += (int)Math.Ceiling(progressBarUpdateIncrement));
-                    form1.UpdateUI(() =>
-                    {
-                        if (form1.progressBar1.Value >= 90)
-                        {
-                            form1.progressBar1.Value = 100;
-                        }
-                    });
+
                     GenerateNewInitialSolution();
                 }
 
@@ -188,7 +181,7 @@ namespace PDP_App
                     count++;
 
                     //  progressBar update without restarts
-                    if (restartCount == 0 && count == updateThreshold)
+                    if (restarts == 0 && count == updateThreshold)
                     {
                         form1.UpdateUI(() => form1.progressBar1.Value = Math.Min(100, form1.progressBar1.Value + 25));
                         updateThreshold += iterations * 0.25; // add 25%
