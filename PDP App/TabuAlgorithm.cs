@@ -25,7 +25,7 @@ namespace PDP_App
         private readonly Random random = new();
         private readonly List<float> objectiveFunctionValues = [];
 
-        public int progressBarUpdateIncrement; //progres bar update 
+        public float progressBarUpdateIncrement; //progres bar update 
 
         /// <summary>
         /// Calculating objective function
@@ -153,16 +153,30 @@ namespace PDP_App
         /// </summary>
         public void SearchSolutionSpace()
         {
+            form1.UpdateUI(() => form1.progressBar1.Value = 0);
             if (restartCount > 0)
             {
-                progressBarUpdateIncrement = restartCount / 100;
+                progressBarUpdateIncrement = 100 / restartCount;
             }
+            double updateThreshold = iterations * 0.25;
 
             int count = 0;
+
+            // progressBar update if restarts
             for (int r = 0; r < restartCount + 1; r++)
             {
                 if (r != 0)
+                {
+                    form1.UpdateUI(() => form1.progressBar1.Value += (int)Math.Ceiling(progressBarUpdateIncrement));
+                    form1.UpdateUI(() =>
+                    {
+                        if (form1.progressBar1.Value >= 90)
+                        {
+                            form1.progressBar1.Value = 100;
+                        }
+                    });
                     GenerateNewInitialSolution();
+                }
 
                 List<List<int>> tabuList = [new List<int>(Solution)];
 
@@ -172,6 +186,14 @@ namespace PDP_App
                 while (iter < iterations)
                 {
                     count++;
+
+                    //  progressBar update without restarts
+                    if (restartCount == 0 && count == updateThreshold)
+                    {
+                        form1.UpdateUI(() => form1.progressBar1.Value = Math.Min(100, form1.progressBar1.Value + 25));
+                        updateThreshold += iterations * 0.25; // add 25%
+                    }
+
                     List<List<int>> neighbourhood = GenerateNeighbourhood();
 
                     // Find the best candidate
