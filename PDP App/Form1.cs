@@ -27,7 +27,7 @@ namespace PDP_App
             Cuts = [];
             InitializeComponent();
         }
-        
+
         /// <summary>
         /// Updating UI from selected thread
         /// </summary>
@@ -288,6 +288,15 @@ namespace PDP_App
         private void button5_Click(object sender, EventArgs e)
         {
             tabuAlgorithm?.StopTabu();
+            button1.Enabled = true;
+            button2.Enabled = true;
+            button3.Enabled = true;
+            button4.Enabled = true;
+            numericUpDown3.Enabled = true;
+            numericUpDown1.Enabled = true;
+            numericUpDown2.Enabled = true;
+            numericUpDown9.Enabled = true;
+            textBox4.Enabled = true;
         }
     }
 }

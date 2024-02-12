@@ -25,6 +25,7 @@ namespace PDP_App
         private readonly List<float> objectiveFunctionValues = [];
 
         public float progressBarUpdateIncrement; //progres bar update 
+        private volatile bool stopRequested = false;
 
         /// <summary>
         /// Calculating objective function
@@ -178,10 +179,15 @@ namespace PDP_App
 
                 while (iter < iterations)
                 {
+                    if (stopRequested)
+                    {
+                        break;
+                    }
+
                     count++;
 
                     //  progressBar update without restarts
-                    if (restarts == 0 && count == updateThreshold)
+                    if (restartCount == 0 && count == updateThreshold)
                     {
                         form1.UpdateUI(() => form1.progressBar1.Value = Math.Min(100, form1.progressBar1.Value + 25));
                         updateThreshold += iterations * 0.25; // add 25%
@@ -391,6 +397,7 @@ namespace PDP_App
         /// </summary>
         public void StopTabu()
         {
+            stopRequested = true;
             CalculateFinalObjectiveFunctionValue();
             form1.UpdateUI(form1.richTextBox3.Clear);
             form1.UpdateUI(() =>
