@@ -2,7 +2,7 @@
 
 namespace PDP_App
 {
-    class TabuAlgorithm(int tabuListSize, int percentOfIterations, int restarts, int iterations, Form1 form1)
+    class TabuAlgorithm(int tabuListSize, int percentOfIterations, int restarts, int iterations, int deletedPercentOfSolution, Form1 form1)
     {
         private readonly Form1 form1 = form1;
 
@@ -19,6 +19,7 @@ namespace PDP_App
         private readonly int percentOfIterations = percentOfIterations;
         private readonly int restartCount = restarts;
         private readonly int iterations = iterations;
+        private readonly int deletedPercentOfSolution = deletedPercentOfSolution;
 
         private readonly Random random = new();
         private readonly List<float> objectiveFunctionValues = [];
@@ -301,8 +302,8 @@ namespace PDP_App
         /// </summary>
         private void Diversify()
         {
-            float deletedPercentOfSolution = 25; //parameter?
-            int deletedValueCount = (int)Math.Round(deletedPercentOfSolution / 100 * Solution.Count);
+            float deletedPercent = (deletedPercentOfSolution / 1.0f); 
+            int deletedValueCount = (int)Math.Round(deletedPercent / 100 * Solution.Count);
 
             // copy of the current solution
             List<int> newSolution = new(Solution);

@@ -174,6 +174,7 @@ namespace PDP_App
 
             int tabuSize = (int)numericUpDown1.Value;
             int percentOfIterations = (int)numericUpDown2.Value;
+            int deletedPercentOfSolution = (int)numericUpDown9.Value;
             int restartCount = (int)numericUpDown3.Value;
 
             if (tabuSize < 0 || tabuSize % 1 != 0)
@@ -183,7 +184,12 @@ namespace PDP_App
             }
             if (percentOfIterations < 0 || percentOfIterations % 1 != 0)
             {
-                MessageBox.Show("Wartoœæ procentu s¹siedztwa musi byæ nieujemna i ca³kowita.", "B³¹d", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Wartoœæ precentu iteracji bez poprawy musi byæ nieujemna i ca³kowita.", "B³¹d", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return; 
+            }            
+            if (deletedPercentOfSolution < 0 || deletedPercentOfSolution % 1 != 0)
+            {
+                MessageBox.Show("Wartoœæ usuwanego procentu rozwi¹zania przy dywersyfikacji musi byæ nieujemna i ca³kowita.", "B³¹d", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return; 
             }
             if (restartCount < 0 || restartCount % 1 != 0)
@@ -197,7 +203,7 @@ namespace PDP_App
                 return;
             }
 
-            tabuAlgorithm = new(tabuSize, percentOfIterations, restartCount, iterations, this);
+            tabuAlgorithm = new(tabuSize, percentOfIterations, restartCount, iterations, deletedPercentOfSolution, this);
 
             tabuAlgorithm.GenerateInitialSolution();
 

@@ -83,6 +83,8 @@
             label19 = new Label();
             openFileDialog1 = new OpenFileDialog();
             timer1 = new System.Windows.Forms.Timer(components);
+            label24 = new Label();
+            numericUpDown9 = new NumericUpDown();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown8).BeginInit();
@@ -96,6 +98,7 @@
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)chart1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown9).BeginInit();
             SuspendLayout();
             // 
             // tabControl1
@@ -356,6 +359,8 @@
             // 
             // tabPage2
             // 
+            tabPage2.Controls.Add(numericUpDown9);
+            tabPage2.Controls.Add(label24);
             tabPage2.Controls.Add(label23);
             tabPage2.Controls.Add(label22);
             tabPage2.Controls.Add(richTextBox5);
@@ -423,16 +428,16 @@
             // numericUpDown3
             // 
             numericUpDown3.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            numericUpDown3.Location = new Point(237, 188);
+            numericUpDown3.Location = new Point(233, 245);
             numericUpDown3.Name = "numericUpDown3";
-            numericUpDown3.Size = new Size(50, 27);
+            numericUpDown3.Size = new Size(52, 27);
             numericUpDown3.TabIndex = 17;
             numericUpDown3.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // numericUpDown2
             // 
             numericUpDown2.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            numericUpDown2.Location = new Point(237, 141);
+            numericUpDown2.Location = new Point(235, 131);
             numericUpDown2.Name = "numericUpDown2";
             numericUpDown2.Size = new Size(50, 27);
             numericUpDown2.TabIndex = 16;
@@ -449,9 +454,9 @@
             // textBox4
             // 
             textBox4.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            textBox4.Location = new Point(237, 239);
+            textBox4.Location = new Point(233, 293);
             textBox4.Name = "textBox4";
-            textBox4.Size = new Size(50, 27);
+            textBox4.Size = new Size(52, 27);
             textBox4.TabIndex = 14;
             textBox4.Text = "300";
             // 
@@ -459,7 +464,7 @@
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            label9.Location = new Point(35, 242);
+            label9.Location = new Point(35, 296);
             label9.Name = "label9";
             label9.Size = new Size(196, 20);
             label9.TabIndex = 10;
@@ -469,7 +474,7 @@
             // 
             label21.AutoSize = true;
             label21.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            label21.Location = new Point(35, 128);
+            label21.Location = new Point(35, 118);
             label21.Name = "label21";
             label21.Size = new Size(174, 40);
             label21.TabIndex = 9;
@@ -528,7 +533,7 @@
             // 
             label15.AutoSize = true;
             label15.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            label15.Location = new Point(35, 190);
+            label15.Location = new Point(35, 247);
             label15.Name = "label15";
             label15.Size = new Size(127, 20);
             label15.TabIndex = 2;
@@ -636,6 +641,24 @@
             timer1.Interval = 1000;
             timer1.Tick += timer1_Tick;
             // 
+            // label24
+            // 
+            label24.AutoSize = true;
+            label24.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label24.Location = new Point(35, 178);
+            label24.Name = "label24";
+            label24.Size = new Size(197, 60);
+            label24.TabIndex = 22;
+            label24.Text = "- % usuwanego rozwiązania \r\n     podczas dywersyfikacji:\r\n\r\n";
+            // 
+            // numericUpDown9
+            // 
+            numericUpDown9.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            numericUpDown9.Location = new Point(235, 191);
+            numericUpDown9.Name = "numericUpDown9";
+            numericUpDown9.Size = new Size(50, 27);
+            numericUpDown9.TabIndex = 23;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -663,6 +686,7 @@
             tabPage3.ResumeLayout(false);
             tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)chart1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown9).EndInit();
             ResumeLayout(false);
         }
 
@@ -720,5 +744,7 @@
         private Label label21;
         private Label label23;
         private System.Windows.Forms.Timer timer1;
+        private NumericUpDown numericUpDown9;
+        private Label label24;
     }
 }
