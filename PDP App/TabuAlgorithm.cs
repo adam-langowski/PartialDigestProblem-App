@@ -2,7 +2,7 @@
 
 namespace PDP_App
 {
-    class TabuAlgorithm(int tabuListSize, int neighbourhoodPercent, int restarts, int iterations, Form1 form1)
+    class TabuAlgorithm(int tabuListSize, int percentOfIterations, int restarts, int iterations, Form1 form1)
     {
         private readonly Form1 form1 = form1;
 
@@ -16,7 +16,7 @@ namespace PDP_App
         private float finalObjectiveFunction;
 
         private readonly int tabuListSize = tabuListSize;
-        private readonly int neighbourhoodPercent = neighbourhoodPercent;
+        private readonly int percentOfIterations = percentOfIterations;
         private readonly int restartCount = restarts;
         private readonly int iterations = iterations;
 
@@ -202,8 +202,8 @@ namespace PDP_App
                         tabuList.RemoveAt(0);
                     }
 
-                    float percentOfIterations = 5; // add as parameter
-                    int iterationsWithoutDiversification = (int)Math.Round(percentOfIterations / 100 * iterations);
+                    float numberOfIterationsBeforeDiversifying = (percentOfIterations / 100.0f) * iterations;
+                    int iterationsWithoutDiversification = (int)Math.Round(numberOfIterationsBeforeDiversifying);
                     // Check if the diversification condition is met
                     if (noImprovementCount >= iterationsWithoutDiversification)
                     {
@@ -297,11 +297,11 @@ namespace PDP_App
 
 
         /// <summary>
-        /// Diversyfying - deleting some part of current Solution
+        /// Diversyfying - deleting some part of current Solution (set to 25%)
         /// </summary>
         private void Diversify()
         {
-            float deletedPercentOfSolution = 30;
+            float deletedPercentOfSolution = 25; //parameter?
             int deletedValueCount = (int)Math.Round(deletedPercentOfSolution / 100 * Solution.Count);
 
             // copy of the current solution
@@ -309,8 +309,8 @@ namespace PDP_App
 
             for (int i = 0; i < deletedValueCount; i++)
             {
-                // Randomly select an element from the current solution
-                int element = newSolution[random.Next(newSolution.Count)];
+                // Randomly select an element from the current solution, ommiting starting '0'
+                int element = newSolution[random.Next(1, newSolution.Count)];
 
                 // Remove the element 
                 newSolution.Remove(element);

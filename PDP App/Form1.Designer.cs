@@ -258,7 +258,7 @@
             button3.Name = "button3";
             button3.Size = new Size(208, 35);
             button3.TabIndex = 12;
-            button3.Text = "Zatwierdź i zapisz instancję";
+            button3.Text = "Zapisz instancję";
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
             // 
@@ -423,16 +423,16 @@
             // numericUpDown3
             // 
             numericUpDown3.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            numericUpDown3.Location = new Point(249, 174);
+            numericUpDown3.Location = new Point(237, 188);
             numericUpDown3.Name = "numericUpDown3";
             numericUpDown3.Size = new Size(50, 27);
             numericUpDown3.TabIndex = 17;
-            numericUpDown3.Value = new decimal(new int[] { 2, 0, 0, 0 });
+            numericUpDown3.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // numericUpDown2
             // 
             numericUpDown2.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            numericUpDown2.Location = new Point(249, 126);
+            numericUpDown2.Location = new Point(237, 141);
             numericUpDown2.Name = "numericUpDown2";
             numericUpDown2.Size = new Size(50, 27);
             numericUpDown2.TabIndex = 16;
@@ -440,7 +440,7 @@
             // numericUpDown1
             // 
             numericUpDown1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            numericUpDown1.Location = new Point(249, 78);
+            numericUpDown1.Location = new Point(237, 80);
             numericUpDown1.Name = "numericUpDown1";
             numericUpDown1.Size = new Size(48, 27);
             numericUpDown1.TabIndex = 15;
@@ -449,17 +449,17 @@
             // textBox4
             // 
             textBox4.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            textBox4.Location = new Point(249, 218);
+            textBox4.Location = new Point(237, 239);
             textBox4.Name = "textBox4";
             textBox4.Size = new Size(50, 27);
             textBox4.TabIndex = 14;
-            textBox4.Text = "1000";
+            textBox4.Text = "300";
             // 
             // label9
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            label9.Location = new Point(35, 221);
+            label9.Location = new Point(35, 242);
             label9.Name = "label9";
             label9.Size = new Size(196, 20);
             label9.TabIndex = 10;
@@ -471,9 +471,9 @@
             label21.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
             label21.Location = new Point(35, 128);
             label21.Name = "label21";
-            label21.Size = new Size(208, 20);
+            label21.Size = new Size(174, 40);
             label21.TabIndex = 9;
-            label21.Text = "- analizowane sąsiedztwo (%):";
+            label21.Text = "- % iteracji bez poprawy \r\n    ->dywersyfikacja:";
             // 
             // progressBar1
             // 
@@ -528,7 +528,7 @@
             // 
             label15.AutoSize = true;
             label15.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            label15.Location = new Point(35, 176);
+            label15.Location = new Point(35, 190);
             label15.Name = "label15";
             label15.Size = new Size(127, 20);
             label15.TabIndex = 2;

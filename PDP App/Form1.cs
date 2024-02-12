@@ -16,7 +16,7 @@ namespace PDP_App
         private TabuAlgorithm? tabuAlgorithm = null;
         private readonly PDPInstanceGenerator instanceGenerator = new();
 
-        private Stopwatch stopwatch;
+        private Stopwatch? stopwatch;
 
         public Form1()
         {
@@ -173,11 +173,31 @@ namespace PDP_App
             stopwatch.Start();
 
             int tabuSize = (int)numericUpDown1.Value;
-            int neighbourhoodPercent = (int)numericUpDown2.Value;
+            int percentOfIterations = (int)numericUpDown2.Value;
             int restartCount = (int)numericUpDown3.Value;
-            int iterations = int.Parse(textBox4.Text);
 
-            tabuAlgorithm = new(tabuSize, neighbourhoodPercent, restartCount, iterations, this);
+            if (tabuSize < 0 || tabuSize % 1 != 0)
+            {
+                MessageBox.Show("Wartoœæ rozmiaru listy tabu musi byæ nieujemna i ca³kowita.", "B³¹d", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return; 
+            }
+            if (percentOfIterations < 0 || percentOfIterations % 1 != 0)
+            {
+                MessageBox.Show("Wartoœæ procentu s¹siedztwa musi byæ nieujemna i ca³kowita.", "B³¹d", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return; 
+            }
+            if (restartCount < 0 || restartCount % 1 != 0)
+            {
+                MessageBox.Show("Wartoœæ liczby restartów musi byæ nieujemna i ca³kowita.", "B³¹d", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return; 
+            }
+            if (!int.TryParse(textBox4.Text, out int iterations) || iterations < 0)
+            {
+                MessageBox.Show("Wartoœæ liczby iteracji musi byæ nieujemna i ca³kowita.", "B³¹d", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            tabuAlgorithm = new(tabuSize, percentOfIterations, restartCount, iterations, this);
 
             tabuAlgorithm.GenerateInitialSolution();
 
