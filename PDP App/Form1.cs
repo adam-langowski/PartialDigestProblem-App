@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.Diagnostics;
 
 namespace PDP_App
@@ -16,7 +17,8 @@ namespace PDP_App
         private TabuAlgorithm? tabuAlgorithm = null;
         private readonly PDPInstanceGenerator instanceGenerator = new();
 
-        private Stopwatch? stopwatch;
+        private BackgroundWorker tabuWorker; // multithread
+        private Stopwatch stopwatch;
 
         public Form1()
         {
@@ -24,6 +26,22 @@ namespace PDP_App
             D = [];
             Cuts = [];
             InitializeComponent();
+        }
+        
+        /// <summary>
+        /// Updating UI from selected thread
+        /// </summary>
+        /// <param name="action"></param>
+        public void UpdateUI(Action action)
+        {
+            if (InvokeRequired)
+            {
+                Invoke(action);
+            }
+            else
+            {
+                action();
+            }
         }
 
         /// <summary>
@@ -172,6 +190,18 @@ namespace PDP_App
             stopwatch = new Stopwatch();
             stopwatch.Start();
 
+            tabuWorker = new BackgroundWorker();
+            tabuWorker.DoWork += new DoWorkEventHandler(tabuWorker_DoWork);
+            tabuWorker.RunWorkerAsync();
+        }
+
+        /// <summary>
+        /// Run tabu in seperate thread
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tabuWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
             int tabuSize = (int)numericUpDown1.Value;
             int percentOfIterations = (int)numericUpDown2.Value;
             int deletedPercentOfSolution = (int)numericUpDown9.Value;
@@ -180,22 +210,22 @@ namespace PDP_App
             if (tabuSize < 0 || tabuSize % 1 != 0)
             {
                 MessageBox.Show("Wartoœæ rozmiaru listy tabu musi byæ nieujemna i ca³kowita.", "B³¹d", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return; 
+                return;
             }
             if (percentOfIterations < 0 || percentOfIterations % 1 != 0)
             {
                 MessageBox.Show("Wartoœæ precentu iteracji bez poprawy musi byæ nieujemna i ca³kowita.", "B³¹d", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return; 
-            }            
+                return;
+            }
             if (deletedPercentOfSolution < 0 || deletedPercentOfSolution % 1 != 0)
             {
                 MessageBox.Show("Wartoœæ usuwanego procentu rozwi¹zania przy dywersyfikacji musi byæ nieujemna i ca³kowita.", "B³¹d", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return; 
+                return;
             }
             if (restartCount < 0 || restartCount % 1 != 0)
             {
                 MessageBox.Show("Wartoœæ liczby restartów musi byæ nieujemna i ca³kowita.", "B³¹d", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return; 
+                return;
             }
             if (!int.TryParse(textBox4.Text, out int iterations) || iterations < 0)
             {
@@ -213,7 +243,6 @@ namespace PDP_App
 
             stopwatch.Stop();
         }
-
         private void timer1_Tick(object sender, EventArgs e)
         {
             if (stopwatch != null)

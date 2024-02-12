@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms.DataVisualization.Charting;
+﻿using System.ComponentModel;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace PDP_App
 {
@@ -41,7 +42,10 @@ namespace PDP_App
         public void CalculateFinalObjectiveFunctionValue()
         {
             finalObjectiveFunction = (float)BestSolution.Count / maxCutsCount;
-            form1.textBox2.Text = finalObjectiveFunction.ToString();
+            form1.UpdateUI(() =>
+            {
+                form1.textBox2.Text = finalObjectiveFunction.ToString();
+            });
         }
 
         /// <summary>
@@ -49,17 +53,25 @@ namespace PDP_App
         /// </summary>
         public void GenerateInitialSolution()
         {
-            form1.richTextBox5.Clear();
+            form1.UpdateUI(form1.richTextBox5.Clear);
 
             // wygenerowanie rozwiązania początkowego
             List<int> addedNumbers = GenerateInitialNumbers();
             Solution = addedNumbers;
 
             BestSolution = Solution;
-            form1.richTextBox5.AppendText(string.Join(", ", Solution));
+
+            form1.UpdateUI(() =>
+            {
+                form1.richTextBox5.AppendText(string.Join(", ", Solution));
+            });
+
             float startingValue = CalculateObjectiveFunction();
             objectiveFunctionValues.Add(startingValue);
-            form1.textBox1.Text = startingValue.ToString();
+            form1.UpdateUI(() =>
+            {
+                form1.textBox1.Text = startingValue.ToString();
+            });
         }
 
         /// <summary>
@@ -182,7 +194,10 @@ namespace PDP_App
                     Solution = bestCandidate;
                     float currentValue = CalculateObjectiveFunction();
                     objectiveFunctionValues.Add(currentValue);
-                    form1.textBox1.Text = currentValue.ToString();
+                    form1.UpdateUI(() =>
+                    {
+                        form1.textBox1.Text = currentValue.ToString();
+                    });
 
                     // update the best solution if it's better 
                     if (objectiveFunction > finalObjectiveFunction)
@@ -220,8 +235,11 @@ namespace PDP_App
             }
 
             CalculateFinalObjectiveFunctionValue();
-            form1.richTextBox3.Clear();
-            form1.richTextBox3.AppendText(string.Join(", ", BestSolution));
+            form1.UpdateUI(form1.richTextBox3.Clear);
+            form1.UpdateUI(() =>
+            {
+                form1.richTextBox3.AppendText(string.Join(", ", BestSolution));
+            });
 
             DrawChart();
         }
@@ -302,7 +320,7 @@ namespace PDP_App
         /// </summary>
         private void Diversify()
         {
-            float deletedPercent = (deletedPercentOfSolution / 1.0f); 
+            float deletedPercent = (deletedPercentOfSolution / 1.0f);
             int deletedValueCount = (int)Math.Round(deletedPercent / 100 * Solution.Count);
 
             // copy of the current solution
@@ -359,8 +377,11 @@ namespace PDP_App
         public void StopTabu()
         {
             CalculateFinalObjectiveFunctionValue();
-            form1.richTextBox3.Clear();
-            form1.richTextBox3.AppendText(string.Join(", ", BestSolution));
+            form1.UpdateUI(form1.richTextBox3.Clear);
+            form1.UpdateUI(() =>
+            {
+                form1.richTextBox3.AppendText(string.Join(", ", BestSolution));
+            });
 
             DrawChart();
         }
@@ -370,30 +391,32 @@ namespace PDP_App
         /// </summary>
         public void DrawChart()
         {
-            form1.chart1.Series.Clear();
-            form1.chart1.Titles.Clear();
-
-            Series series = new("ObjectiveFunction")
+            form1.UpdateUI(() =>
             {
-                ChartType = SeriesChartType.Line,
-                Color = Color.Blue,
-                BorderWidth = 1,
-            };
-            form1.chart1.Series.Add(series);
+                form1.chart1.Series.Clear();
+                form1.chart1.Titles.Clear();
 
-            double[] xAxisValues = Enumerable.Range(1, objectiveFunctionValues.Count).Select(x => (double)x).ToArray();
-            double[] yAxisValues = objectiveFunctionValues.Select(y => (double)y).ToArray();
+                Series series = new("ObjectiveFunction")
+                {
+                    ChartType = SeriesChartType.Line,
+                    Color = Color.Blue,
+                    BorderWidth = 1,
+                };
+                form1.chart1.Series.Add(series);
 
-            series.Points.DataBindXY(xAxisValues, yAxisValues);
+                double[] xAxisValues = Enumerable.Range(1, objectiveFunctionValues.Count).Select(x => (double)x).ToArray();
+                double[] yAxisValues = objectiveFunctionValues.Select(y => (double)y).ToArray();
 
-            Title chartTitle = new("Osiągane wartości funkcji celu w kolejnych iteracjach");
-            chartTitle.Font = new Font("Arial", 11, FontStyle.Bold);
-            form1.chart1.Titles.Add(chartTitle);
+                series.Points.DataBindXY(xAxisValues, yAxisValues);
 
-            form1.chart1.ChartAreas[0].AxisX.Title = "Iteracja";
-            form1.chart1.ChartAreas[0].AxisY.Title = "Wartość funkcji celu";
+                Title chartTitle = new("Osiągane wartości funkcji celu w kolejnych iteracjach");
+                chartTitle.Font = new Font("Arial", 11, FontStyle.Bold);
+                form1.chart1.Titles.Add(chartTitle);
+
+                form1.chart1.ChartAreas[0].AxisX.Title = "Iteracja";
+                form1.chart1.ChartAreas[0].AxisY.Title = "Wartość funkcji celu";
+            });
         }
-
 
     }
 }
