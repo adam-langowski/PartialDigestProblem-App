@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
@@ -54,6 +56,7 @@
             button2 = new Button();
             button1 = new Button();
             tabPage2 = new TabPage();
+            label23 = new Label();
             label22 = new Label();
             richTextBox5 = new RichTextBox();
             textBox1 = new TextBox();
@@ -72,12 +75,14 @@
             label14 = new Label();
             label13 = new Label();
             tabPage3 = new TabPage();
+            chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             richTextBox3 = new RichTextBox();
             label11 = new Label();
             textBox2 = new TextBox();
             label20 = new Label();
             label19 = new Label();
             openFileDialog1 = new OpenFileDialog();
+            timer1 = new System.Windows.Forms.Timer(components);
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown8).BeginInit();
@@ -90,6 +95,7 @@
             ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)chart1).BeginInit();
             SuspendLayout();
             // 
             // tabControl1
@@ -147,10 +153,10 @@
             // label16
             // 
             label16.AutoSize = true;
-            label16.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label16.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
             label16.Location = new Point(536, 109);
             label16.Name = "label16";
-            label16.Size = new Size(107, 20);
+            label16.Size = new Size(110, 20);
             label16.TabIndex = 31;
             label16.Text = "Rozwiązanie P:";
             // 
@@ -177,7 +183,7 @@
             numericUpDown6.Name = "numericUpDown6";
             numericUpDown6.Size = new Size(56, 27);
             numericUpDown6.TabIndex = 28;
-            numericUpDown6.Value = new decimal(new int[] { 10, 0, 0, 0 });
+            numericUpDown6.Value = new decimal(new int[] { 12, 0, 0, 0 });
             // 
             // numericUpDown5
             // 
@@ -186,7 +192,7 @@
             numericUpDown5.Name = "numericUpDown5";
             numericUpDown5.Size = new Size(45, 27);
             numericUpDown5.TabIndex = 27;
-            numericUpDown5.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            numericUpDown5.Value = new decimal(new int[] { 3, 0, 0, 0 });
             // 
             // numericUpDown4
             // 
@@ -195,7 +201,7 @@
             numericUpDown4.Name = "numericUpDown4";
             numericUpDown4.Size = new Size(73, 27);
             numericUpDown4.TabIndex = 26;
-            numericUpDown4.Value = new decimal(new int[] { 5, 0, 0, 0 });
+            numericUpDown4.Value = new decimal(new int[] { 10, 0, 0, 0 });
             // 
             // richTextBox2
             // 
@@ -218,10 +224,10 @@
             // label12
             // 
             label12.AutoSize = true;
-            label12.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label12.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
             label12.Location = new Point(439, 200);
             label12.Name = "label12";
-            label12.Size = new Size(314, 20);
+            label12.Size = new Size(321, 20);
             label12.TabIndex = 21;
             label12.Text = "Multizbiór wejściowy D (z zadanymi błędami):";
             // 
@@ -259,10 +265,10 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label7.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
             label7.Location = new Point(523, 19);
             label7.Name = "label7";
-            label7.Size = new Size(138, 21);
+            label7.Size = new Size(145, 21);
             label7.TabIndex = 11;
             label7.Text = "Zbiór odcinków P':";
             // 
@@ -350,6 +356,7 @@
             // 
             // tabPage2
             // 
+            tabPage2.Controls.Add(label23);
             tabPage2.Controls.Add(label22);
             tabPage2.Controls.Add(richTextBox5);
             tabPage2.Controls.Add(textBox1);
@@ -375,32 +382,42 @@
             tabPage2.Text = "Tabu Search";
             tabPage2.UseVisualStyleBackColor = true;
             // 
+            // label23
+            // 
+            label23.AutoSize = true;
+            label23.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            label23.Location = new Point(364, 242);
+            label23.Name = "label23";
+            label23.Size = new Size(161, 20);
+            label23.TabIndex = 21;
+            label23.Text = "Czas pracy algorytmu:";
+            // 
             // label22
             // 
             label22.AutoSize = true;
-            label22.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            label22.Location = new Point(369, 103);
+            label22.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            label22.Location = new Point(364, 118);
             label22.Name = "label22";
-            label22.Size = new Size(179, 20);
+            label22.Size = new Size(182, 20);
             label22.TabIndex = 20;
             label22.Text = "Rozwiązanie początkowe:";
             // 
             // richTextBox5
             // 
-            richTextBox5.Location = new Point(369, 126);
+            richTextBox5.Location = new Point(582, 118);
             richTextBox5.Name = "richTextBox5";
             richTextBox5.ReadOnly = true;
-            richTextBox5.Size = new Size(221, 34);
+            richTextBox5.Size = new Size(129, 28);
             richTextBox5.TabIndex = 19;
             richTextBox5.Text = "";
             // 
             // textBox1
             // 
             textBox1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            textBox1.Location = new Point(578, 225);
+            textBox1.Location = new Point(582, 178);
             textBox1.Name = "textBox1";
             textBox1.ReadOnly = true;
-            textBox1.Size = new Size(82, 27);
+            textBox1.Size = new Size(129, 27);
             textBox1.TabIndex = 18;
             // 
             // numericUpDown3
@@ -410,6 +427,7 @@
             numericUpDown3.Name = "numericUpDown3";
             numericUpDown3.Size = new Size(50, 27);
             numericUpDown3.TabIndex = 17;
+            numericUpDown3.Value = new decimal(new int[] { 2, 0, 0, 0 });
             // 
             // numericUpDown2
             // 
@@ -426,6 +444,7 @@
             numericUpDown1.Name = "numericUpDown1";
             numericUpDown1.Size = new Size(48, 27);
             numericUpDown1.TabIndex = 15;
+            numericUpDown1.Value = new decimal(new int[] { 10, 0, 0, 0 });
             // 
             // textBox4
             // 
@@ -458,35 +477,35 @@
             // 
             // progressBar1
             // 
-            progressBar1.Location = new Point(369, 196);
+            progressBar1.Location = new Point(364, 315);
             progressBar1.Name = "progressBar1";
-            progressBar1.Size = new Size(342, 23);
+            progressBar1.Size = new Size(347, 23);
             progressBar1.TabIndex = 8;
             // 
             // label18
             // 
             label18.AutoSize = true;
-            label18.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            label18.Location = new Point(369, 173);
+            label18.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            label18.Location = new Point(364, 292);
             label18.Name = "label18";
-            label18.Size = new Size(62, 20);
+            label18.Size = new Size(251, 20);
             label18.TabIndex = 7;
-            label18.Text = "Progres:";
+            label18.Text = "Progres (przy zadanych restartach):";
             // 
             // label17
             // 
             label17.AutoSize = true;
-            label17.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            label17.Location = new Point(369, 228);
+            label17.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            label17.Location = new Point(364, 181);
             label17.Name = "label17";
-            label17.Size = new Size(203, 20);
+            label17.Size = new Size(212, 20);
             label17.TabIndex = 6;
             label17.Text = "Aktualna wartość funkcji celu:";
             // 
             // button5
             // 
             button5.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            button5.Location = new Point(461, 315);
+            button5.Location = new Point(582, 56);
             button5.Name = "button5";
             button5.Size = new Size(129, 33);
             button5.TabIndex = 5;
@@ -497,7 +516,7 @@
             // button4
             // 
             button4.Font = new Font("Segoe UI Symbol", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button4.Location = new Point(461, 51);
+            button4.Location = new Point(369, 56);
             button4.Name = "button4";
             button4.Size = new Size(129, 33);
             button4.TabIndex = 4;
@@ -537,6 +556,7 @@
             // 
             // tabPage3
             // 
+            tabPage3.Controls.Add(chart1);
             tabPage3.Controls.Add(richTextBox3);
             tabPage3.Controls.Add(label11);
             tabPage3.Controls.Add(textBox2);
@@ -548,6 +568,16 @@
             tabPage3.TabIndex = 2;
             tabPage3.Text = "Wyniki";
             tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // chart1
+            // 
+            chartArea1.Name = "ChartArea1";
+            chart1.ChartAreas.Add(chartArea1);
+            chart1.Location = new Point(39, 167);
+            chart1.Name = "chart1";
+            chart1.Size = new Size(677, 229);
+            chart1.TabIndex = 5;
+            chart1.Text = "chart1";
             // 
             // richTextBox3
             // 
@@ -561,10 +591,10 @@
             // label11
             // 
             label11.AutoSize = true;
-            label11.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label11.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
             label11.Location = new Point(463, 27);
             label11.Name = "label11";
-            label11.Size = new Size(167, 20);
+            label11.Size = new Size(173, 20);
             label11.TabIndex = 3;
             label11.Text = "Otrzymane rozwiązanie:";
             // 
@@ -583,23 +613,28 @@
             label20.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label20.Location = new Point(39, 122);
             label20.Name = "label20";
-            label20.Size = new Size(214, 20);
+            label20.Size = new Size(0, 20);
             label20.TabIndex = 1;
-            label20.Text = "Wykres funkcji dla Tabu Search:";
             // 
             // label19
             // 
             label19.AutoSize = true;
-            label19.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label19.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
             label19.Location = new Point(36, 27);
             label19.Name = "label19";
-            label19.Size = new Size(217, 20);
+            label19.Size = new Size(226, 20);
             label19.TabIndex = 0;
             label19.Text = "Otrzymana wartość funkcji celu:";
             // 
             // openFileDialog1
             // 
             openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // timer1
+            // 
+            timer1.Enabled = true;
+            timer1.Interval = 1000;
+            timer1.Tick += timer1_Tick;
             // 
             // Form1
             // 
@@ -627,6 +662,7 @@
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
             tabPage3.ResumeLayout(false);
             tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)chart1).EndInit();
             ResumeLayout(false);
         }
 
@@ -655,11 +691,10 @@
         private Button button5;
         private Button button4;
         private Label label17;
-        private ProgressBar progressBar1;
+        public ProgressBar progressBar1;
         private Label label18;
         private Label label20;
         private Label label19;
-        private Label label21;
         private RichTextBox richTextBox2;
         private RichTextBox richTextBox1;
         private NumericUpDown numericUpDown2;
@@ -681,5 +716,9 @@
         private Label label16;
         private Label label22;
         public RichTextBox richTextBox5;
+        public System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private Label label21;
+        private Label label23;
+        private System.Windows.Forms.Timer timer1;
     }
 }

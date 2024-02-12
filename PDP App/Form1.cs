@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 namespace PDP_App
 {
     public partial class Form1 : Form
@@ -13,6 +15,8 @@ namespace PDP_App
 
         private TabuAlgorithm? tabuAlgorithm = null;
         private readonly PDPInstanceGenerator instanceGenerator = new();
+
+        private Stopwatch stopwatch;
 
         public Form1()
         {
@@ -165,6 +169,9 @@ namespace PDP_App
         /// <param name="e"></param>
         private void button4_Click(object sender, EventArgs e)
         {
+            stopwatch = new Stopwatch();
+            stopwatch.Start();
+
             int tabuSize = (int)numericUpDown1.Value;
             int neighbourhoodPercent = (int)numericUpDown2.Value;
             int restartCount = (int)numericUpDown3.Value;
@@ -174,7 +181,19 @@ namespace PDP_App
 
             tabuAlgorithm.GenerateInitialSolution();
 
+            timer1.Start();
+
             tabuAlgorithm.SearchSolutionSpace();
+
+            stopwatch.Stop();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (stopwatch != null)
+            {
+                label23.Text = $"Czas pracy algorytmu: {stopwatch.ElapsedMilliseconds} ms";
+            }
         }
 
         /// <summary>

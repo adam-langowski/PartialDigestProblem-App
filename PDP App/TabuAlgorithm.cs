@@ -1,4 +1,6 @@
-﻿namespace PDP_App
+﻿using System.Windows.Forms.DataVisualization.Charting;
+
+namespace PDP_App
 {
     class TabuAlgorithm(int tabuListSize, int neighbourhoodPercent, int restarts, int iterations, Form1 form1)
     {
@@ -19,6 +21,9 @@
         private readonly int iterations = iterations;
 
         private readonly Random random = new();
+        private readonly List<float> objectiveFunctionValues = [];
+
+        public int progressBarUpdateIncrement; //progres bar update 
 
         /// <summary>
         /// Calculating objective function
@@ -52,6 +57,7 @@
             BestSolution = Solution;
             form1.richTextBox5.AppendText(string.Join(", ", Solution));
             float startingValue = CalculateObjectiveFunction();
+            objectiveFunctionValues.Add(startingValue);
             form1.textBox1.Text = startingValue.ToString();
         }
 
@@ -61,7 +67,8 @@
         public void GenerateNewInitialSolution()
         {
             List<int> addedNumbers = GenerateInitialNumbers();
-            Solution = [0, .. addedNumbers];
+            Solution = addedNumbers;
+            objectiveFunctionValues.Add(CalculateObjectiveFunction());
         }
 
         /// <summary>
@@ -77,7 +84,7 @@
                 addedNumbers.Add(0); // dodaj 0 do rozwiązania
 
                 // utwórz listę indeksów elementów z D, które nie są równe 0
-                List<int> indices = new List<int>();
+                List<int> indices = [];
                 for (int i = 0; i < D.Count; i++)
                 {
                     if (D[i] != 0)
@@ -133,6 +140,12 @@
         /// </summary>
         public void SearchSolutionSpace()
         {
+            if (restartCount > 0)
+            {
+                progressBarUpdateIncrement = restartCount / 100;
+            }
+
+            int count = 0;
             for (int r = 0; r < restartCount + 1; r++)
             {
                 if (r != 0)
@@ -140,11 +153,12 @@
 
                 List<List<int>> tabuList = [new List<int>(Solution)];
 
-                int iter = 0; //iteration counter
+                int iter = 0;               //iteration counter
                 int noImprovementCount = 0; //number of iterations without improvement
 
                 while (iter < iterations)
                 {
+                    count++;
                     List<List<int>> neighbourhood = GenerateNeighbourhood();
 
                     // Find the best candidate
@@ -166,6 +180,7 @@
 
                     Solution = bestCandidate;
                     float currentValue = CalculateObjectiveFunction();
+                    objectiveFunctionValues.Add(currentValue);
                     form1.textBox1.Text = currentValue.ToString();
 
                     // update the best solution if it's better 
@@ -200,7 +215,9 @@
 
                     iter++;
                 }
+
             }
+
             CalculateFinalObjectiveFunctionValue();
             form1.richTextBox3.Clear();
             form1.richTextBox3.AppendText(string.Join(", ", BestSolution));
@@ -232,7 +249,7 @@
                     bool isFeasible = true;
 
                     // A dictionary to store the differences and their counts
-                    Dictionary<int, int> differences = []; 
+                    Dictionary<int, int> differences = [];
 
                     for (int i = 0; i < newSolution.Count - 1; i++)
                     {
@@ -240,7 +257,7 @@
                         {
                             int difference = newSolution[j] - newSolution[i];
                             // If the difference is not in D or exceeds its count in D
-                            if (!D.Contains(difference) || (differences.ContainsKey(difference) && differences[difference] >= D.Count(x => x == difference))) 
+                            if (!D.Contains(difference) || (differences.ContainsKey(difference) && differences[difference] >= D.Count(x => x == difference)))
                             {
                                 isFeasible = false;
                                 break;
@@ -312,26 +329,7 @@
         /// <returns></returns>
         private bool IsTabu(List<int> solution, List<List<int>> tabuList)
         {
-            // Loop through all solutions on tabu list
-            foreach (List<int> tabuSolution in tabuList)
-            {
-                // Compare the solutions
-                bool isEqual = true;
-                for (int i = 0; i < solution.Count; i++)
-                {
-                    if (solution.Count > tabuSolution.Count || solution[i] != tabuSolution[i])
-                    {
-                        isEqual = false;
-                        break;
-                    }
-                }
-                if (isEqual)
-                {
-                    return true;
-                }
-            }
-            // If the solution is not equal to any tabu solution, return false
-            return false;
+            return tabuList.Any(tabuSolution => tabuSolution.SequenceEqual(solution));
         }
 
         /// <summary>
@@ -367,12 +365,34 @@
         }
 
         /// <summary>
-        /// Draw chart of objective function value change in time
+        /// Draw chart of objective function value changes in time
         /// </summary>
         public void DrawChart()
         {
+            form1.chart1.Series.Clear();
+            form1.chart1.Titles.Clear();
 
+            Series series = new("ObjectiveFunction")
+            {
+                ChartType = SeriesChartType.Line,
+                Color = Color.Blue,
+                BorderWidth = 1,
+            };
+            form1.chart1.Series.Add(series);
+
+            double[] xAxisValues = Enumerable.Range(1, objectiveFunctionValues.Count).Select(x => (double)x).ToArray();
+            double[] yAxisValues = objectiveFunctionValues.Select(y => (double)y).ToArray();
+
+            series.Points.DataBindXY(xAxisValues, yAxisValues);
+
+            Title chartTitle = new("Osiągane wartości funkcji celu w kolejnych iteracjach");
+            chartTitle.Font = new Font("Arial", 11, FontStyle.Bold);
+            form1.chart1.Titles.Add(chartTitle);
+
+            form1.chart1.ChartAreas[0].AxisX.Title = "Iteracja";
+            form1.chart1.ChartAreas[0].AxisY.Title = "Wartość funkcji celu";
         }
+
 
     }
 }
