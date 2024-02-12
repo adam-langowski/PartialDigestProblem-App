@@ -56,6 +56,8 @@
             button2 = new Button();
             button1 = new Button();
             tabPage2 = new TabPage();
+            numericUpDown9 = new NumericUpDown();
+            label24 = new Label();
             label23 = new Label();
             label22 = new Label();
             richTextBox5 = new RichTextBox();
@@ -83,8 +85,6 @@
             label19 = new Label();
             openFileDialog1 = new OpenFileDialog();
             timer1 = new System.Windows.Forms.Timer(components);
-            label24 = new Label();
-            numericUpDown9 = new NumericUpDown();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown8).BeginInit();
@@ -93,12 +93,12 @@
             ((System.ComponentModel.ISupportInitialize)numericUpDown5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown4).BeginInit();
             tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown9).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)chart1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown9).BeginInit();
             SuspendLayout();
             // 
             // tabControl1
@@ -186,7 +186,7 @@
             numericUpDown6.Name = "numericUpDown6";
             numericUpDown6.Size = new Size(56, 27);
             numericUpDown6.TabIndex = 28;
-            numericUpDown6.Value = new decimal(new int[] { 12, 0, 0, 0 });
+            numericUpDown6.Value = new decimal(new int[] { 15, 0, 0, 0 });
             // 
             // numericUpDown5
             // 
@@ -387,6 +387,25 @@
             tabPage2.Text = "Tabu Search";
             tabPage2.UseVisualStyleBackColor = true;
             // 
+            // numericUpDown9
+            // 
+            numericUpDown9.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            numericUpDown9.Location = new Point(235, 191);
+            numericUpDown9.Name = "numericUpDown9";
+            numericUpDown9.Size = new Size(50, 27);
+            numericUpDown9.TabIndex = 23;
+            numericUpDown9.Value = new decimal(new int[] { 20, 0, 0, 0 });
+            // 
+            // label24
+            // 
+            label24.AutoSize = true;
+            label24.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label24.Location = new Point(35, 178);
+            label24.Name = "label24";
+            label24.Size = new Size(197, 60);
+            label24.TabIndex = 22;
+            label24.Text = "- % usuwanego rozwiązania \r\n     podczas dywersyfikacji:\r\n\r\n";
+            // 
             // label23
             // 
             label23.AutoSize = true;
@@ -441,6 +460,7 @@
             numericUpDown2.Name = "numericUpDown2";
             numericUpDown2.Size = new Size(50, 27);
             numericUpDown2.TabIndex = 16;
+            numericUpDown2.Value = new decimal(new int[] { 20, 0, 0, 0 });
             // 
             // numericUpDown1
             // 
@@ -458,7 +478,7 @@
             textBox4.Name = "textBox4";
             textBox4.Size = new Size(52, 27);
             textBox4.TabIndex = 14;
-            textBox4.Text = "300";
+            textBox4.Text = "500";
             // 
             // label9
             // 
@@ -641,24 +661,6 @@
             timer1.Interval = 1000;
             timer1.Tick += timer1_Tick;
             // 
-            // label24
-            // 
-            label24.AutoSize = true;
-            label24.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            label24.Location = new Point(35, 178);
-            label24.Name = "label24";
-            label24.Size = new Size(197, 60);
-            label24.TabIndex = 22;
-            label24.Text = "- % usuwanego rozwiązania \r\n     podczas dywersyfikacji:\r\n\r\n";
-            // 
-            // numericUpDown9
-            // 
-            numericUpDown9.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            numericUpDown9.Location = new Point(235, 191);
-            numericUpDown9.Name = "numericUpDown9";
-            numericUpDown9.Size = new Size(50, 27);
-            numericUpDown9.TabIndex = 23;
-            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -680,13 +682,13 @@
             ((System.ComponentModel.ISupportInitialize)numericUpDown4).EndInit();
             tabPage2.ResumeLayout(false);
             tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown9).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown3).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown2).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
             tabPage3.ResumeLayout(false);
             tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)chart1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown9).EndInit();
             ResumeLayout(false);
         }
 
