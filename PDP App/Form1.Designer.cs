@@ -513,9 +513,9 @@
             label18.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
             label18.Location = new Point(364, 292);
             label18.Name = "label18";
-            label18.Size = new Size(251, 20);
+            label18.Size = new Size(66, 20);
             label18.TabIndex = 7;
-            label18.Text = "Progres (przy zadanych restartach):";
+            label18.Text = "Progres:\r\n";
             // 
             // label17
             // 
