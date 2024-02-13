@@ -92,10 +92,18 @@ namespace PDP_App
         /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(numericUpDown4.Text) || string.IsNullOrEmpty(numericUpDown5.Text) || string.IsNullOrEmpty(numericUpDown6.Text) ||
+                string.IsNullOrEmpty(numericUpDown7.Text) || string.IsNullOrEmpty(numericUpDown8.Text))
+            {
+                MessageBox.Show("¯adne wartoœci parametrów nie mog¹ byæ puste", "B³¹d", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             m = Convert.ToInt32(numericUpDown4.Text);
 
             minLength = Convert.ToInt32(numericUpDown5.Text);
             maxLength = Convert.ToInt32(numericUpDown6.Text);
+
             if (minLength < 1 || maxLength < 1)
             {
                 MessageBox.Show("Podaj dodatnie wartoœci d³ugoœci fragmentów", "B³¹d", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -187,31 +195,13 @@ namespace PDP_App
         /// <param name="e"></param>
         private void button4_Click(object sender, EventArgs e)
         {
-            stopwatch = new Stopwatch();
-            stopwatch.Start();
+            if (string.IsNullOrEmpty(numericUpDown1.Text) || string.IsNullOrEmpty(numericUpDown2.Text) || string.IsNullOrEmpty(numericUpDown3.Text) ||
+                string.IsNullOrEmpty(numericUpDown9.Text) || textBox4.Text.ToString() == null)
+            {
+                MessageBox.Show("¯adne wartoœci parametrów tabu nie mog¹ byæ puste", "B³¹d", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-            button1.Enabled = false;
-            button2.Enabled = false;
-            button3.Enabled = false;
-            button4.Enabled = false;
-            numericUpDown3.Enabled = false;
-            textBox4.Enabled = false;
-            numericUpDown1.Enabled = false;
-            numericUpDown2.Enabled = false;
-            numericUpDown9.Enabled = false;
-
-            tabuWorker = new BackgroundWorker();
-            tabuWorker.DoWork += new DoWorkEventHandler(tabuWorker_DoWork);
-            tabuWorker.RunWorkerAsync();
-        }
-
-        /// <summary>
-        /// Run tabu in seperate thread
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void tabuWorker_DoWork(object sender, DoWorkEventArgs e)
-        {
             int tabuSize = (int)numericUpDown1.Value;
             int percentOfIterations = (int)numericUpDown2.Value;
             int deletedPercentOfSolution = (int)numericUpDown9.Value;
@@ -237,6 +227,40 @@ namespace PDP_App
                 MessageBox.Show("Wartoœæ liczby restartów musi byæ nieujemna i ca³kowita.", "B³¹d", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            if (!int.TryParse(textBox4.Text, out int iterations) || iterations < 0)
+            {
+                MessageBox.Show("Wartoœæ liczby iteracji musi byæ nieujemna i ca³kowita.", "B³¹d", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            button1.Enabled = false;
+            button2.Enabled = false;
+            button3.Enabled = false;
+            button4.Enabled = false;
+            numericUpDown3.Enabled = false;
+            textBox4.Enabled = false;
+            numericUpDown1.Enabled = false;
+            numericUpDown2.Enabled = false;
+            numericUpDown9.Enabled = false;
+
+            stopwatch = new Stopwatch();
+            stopwatch.Start();
+            tabuWorker = new BackgroundWorker();
+            tabuWorker.DoWork += new DoWorkEventHandler(tabuWorker_DoWork);
+            tabuWorker.RunWorkerAsync();
+        }
+
+        /// <summary>
+        /// Run tabu in seperate thread
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tabuWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            int tabuSize = (int)numericUpDown1.Value;
+            int percentOfIterations = (int)numericUpDown2.Value;
+            int deletedPercentOfSolution = (int)numericUpDown9.Value;
+            int restartCount = (int)numericUpDown3.Value;
             if (!int.TryParse(textBox4.Text, out int iterations) || iterations < 0)
             {
                 MessageBox.Show("Wartoœæ liczby iteracji musi byæ nieujemna i ca³kowita.", "B³¹d", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -288,6 +312,7 @@ namespace PDP_App
         private void button5_Click(object sender, EventArgs e)
         {
             tabuAlgorithm?.StopTabu();
+            progressBar1.Value = 100;
             button1.Enabled = true;
             button2.Enabled = true;
             button3.Enabled = true;

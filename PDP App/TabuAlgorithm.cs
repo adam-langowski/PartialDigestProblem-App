@@ -255,6 +255,11 @@ namespace PDP_App
 
             }
 
+            form1.UpdateUI(() =>
+            {
+                form1.progressBar1.Value = 100;
+            });
+            
             CalculateFinalObjectiveFunctionValue();
             form1.UpdateUI(form1.richTextBox3.Clear);
             form1.UpdateUI(() =>
