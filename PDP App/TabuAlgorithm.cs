@@ -125,7 +125,7 @@ namespace PDP_App
                     foreach (int number in addedNumbers)
                     {
                         int difference = D[index] - number; // różnica między elementami
-                        if (addedNumbers.Count(x => x == difference) >= D.Count(x => x == difference)) // jeśli liczba wystąpień różnicy w rozwiązaniu jest równa lub większa niż liczba wystąpień różnicy w D
+                        if (addedNumbers.Count(x => x == difference) >= D.Count(x => x == difference)) // jeśli liczba wystąpień różnicy w rozwiązaniu jest większa niż liczba wystąpień różnicy w D
                         {
                             isDuplicate = true;
                             break;
@@ -436,8 +436,10 @@ namespace PDP_App
 
                 series.Points.DataBindXY(xAxisValues, yAxisValues);
 
-                Title chartTitle = new("Osiągane wartości funkcji celu w kolejnych iteracjach");
-                chartTitle.Font = new Font("Arial", 11, FontStyle.Bold);
+                Title chartTitle = new("Osiągane wartości funkcji celu w kolejnych iteracjach")
+                {
+                    Font = new Font("Arial", 11, FontStyle.Bold)
+                };
                 form1.chart1.Titles.Add(chartTitle);
 
                 form1.chart1.ChartAreas[0].AxisX.Title = "Iteracja";

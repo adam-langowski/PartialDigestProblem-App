@@ -153,19 +153,43 @@ namespace PDP_App
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 string filePath = openFileDialog1.FileName;
-                string fileContent = File.ReadAllText(filePath);
+                try
+                {
+                    string fileContent = File.ReadAllText(filePath);
 
-                List<int> D = fileContent.Split(',').Select(int.Parse).ToList();
+                    //sprawdzenie formy pliku
+                    if (IsValidFileContent(fileContent))
+                    {
+                        List<int> D = fileContent.Split(',').Select(int.Parse).ToList();
+                        D.Sort();
 
-                D.Sort();
+                        this.D = D;
 
-                this.D = D;
-
-                richTextBox1.Clear();
-                richTextBox2.Clear();
-                richTextBox4.Clear();
-                richTextBox2.AppendText(string.Join(", ", D));
+                        richTextBox1.Clear();
+                        richTextBox2.Clear();
+                        richTextBox4.Clear();
+                        richTextBox2.AppendText(string.Join(", ", D));
+                    }
+                    else
+                    {
+                        MessageBox.Show("Zawartoœæ pliku nie jest w odpowiednim formacie.", "B³¹d", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Wyst¹pi³ b³¹d podczas wczytywania pliku: {ex.Message}", "B³¹d", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
+        }
+
+        /// <summary>
+        /// Sprawdzenie, czy zawartoœæ pliku zawiera tylko liczby ca³kowite oddzielone przecinkiem
+        /// </summary>
+        /// <param name="content"></param>
+        /// <returns></returns>
+        private static bool IsValidFileContent(string content)
+        {
+            return content.Split(',').All(part => int.TryParse(part, out _));
         }
 
         /// <summary>
