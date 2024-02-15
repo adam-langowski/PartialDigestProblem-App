@@ -452,7 +452,6 @@
             numericUpDown3.Name = "numericUpDown3";
             numericUpDown3.Size = new Size(52, 27);
             numericUpDown3.TabIndex = 17;
-            numericUpDown3.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // numericUpDown2
             // 
