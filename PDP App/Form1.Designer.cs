@@ -201,6 +201,7 @@
             // 
             numericUpDown4.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
             numericUpDown4.Location = new Point(204, 73);
+            numericUpDown4.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             numericUpDown4.Name = "numericUpDown4";
             numericUpDown4.Size = new Size(73, 27);
             numericUpDown4.TabIndex = 26;
@@ -466,6 +467,7 @@
             // 
             numericUpDown1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
             numericUpDown1.Location = new Point(237, 80);
+            numericUpDown1.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             numericUpDown1.Name = "numericUpDown1";
             numericUpDown1.Size = new Size(48, 27);
             numericUpDown1.TabIndex = 15;
