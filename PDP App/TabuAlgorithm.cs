@@ -165,6 +165,10 @@ namespace PDP_App
             // progressBar update if restarts
             for (int r = 0; r < restartCount + 1; r++)
             {
+                if (stopRequested)
+                {
+                    break;
+                }
                 if (r != 0)
                 {
                     form1.UpdateUI(() => form1.progressBar1.Value += (int)Math.Ceiling(progressBarUpdateIncrement));
